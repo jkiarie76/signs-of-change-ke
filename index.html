@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hands & Voices - Deaf culture, told well</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="main.css">
+    <!-- Using a modern system font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-initials">H&V</span>
+                <div class="logo-text">
+                    <span class="brand-name">Hands & Voices</span>
+                    <span class="tagline">Deaf culture, told well</span>
+                </div>
+            </a>
+            
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="deaf-culture-101.html">Deaf Culture 101</a></li>
+                    <li><a href="deaf-world.html">Deaf World</a></li>
+                    <li><a href="learn-sign.html">Learn Sign</a></li>
+                    <li><a href="connect.html">Connect</a></li>
+                </ul>
+            </nav>
+
+            <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+        </div>
+        
+        <!-- Mobile Navigation Dropdown -->
+        <nav class="mobile-nav" id="mobile-nav">
+            <ul>
+                <li><a href="/" class="active">Home</a></li>
+                <li><a href="deaf-culture-101.html">Deaf Culture 101</a></li>
+                <li><a href="deaf-world.html">Deaf World</a></li>
+                <li><a href="learn-sign.html">Learn Sign</a></li>
+                <li><a href="connect.html">Connect</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="container main-layout">
+        <!-- Left Column: Articles -->
+        <div class="content-area">
+            
+            <!-- Featured Post -->
+            <section class="section">
+                <div class="section-header">
+                    <span class="eyebrow">Featured</span>
+                    <h3>This week's read</h3>
+                </div>
+
+                <div class="section-headers"></div>
+
+                <article class="featured-card">
+                    <!-- Unsplash placeholder for the featured image -->
+                    <img src="/.netlify/images?url=/images/deaf_index.jpg&w=600&fm=webp" class="featured-img">
+                    <div class="featured-content">
+                        <div class="tags">
+                            <span class="tag">Deaf Culture 101</span>
+                            <span class="tag highlight">Featured</span>
+                        </div>
+                        <h2>Deaf isn't a synonym for silent — it's a language, a lens, and a loud, loving culture</h2>
+                        <div class="meta">
+                            By Admin &middot; <time>July 5, 2026</time> &middot; 7 min read
+                        </div>
+                        <p class="excerpt">
+                            For decades, hearing culture has framed deafness as an absence. Deaf writers, teachers and performers keep proving otherwise: sign languages are full grammars, Deaf communities are held together by shared humor and history, and access is a design choice — not a favor. Here's where to start if you want to see the world the way Deaf readers already do.
+                        </p>
+                        <a href="#" class="btn">Read Article -></a>
+                    </div>
+                </article>
+            </section>
+
+            <!-- Older Posts Archive -->
+            <section class="section">
+                <div class="section-header">
+                    <span class="eyebrow">Archive</span>
+                    <h3>Older posts</h3>
+                </div>
+                
+                <div class="archive-grid">
+                    <a href="#" class="archive-card">
+                        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80" alt="Coffee shop chats">
+                        <div class="card-text">
+                            <span class="card-meta" style="color: turquoise;">Deaf World &middot; </span><span style="font-size: 13px;">Jun 28, 2026</span>
+                            <h4>Coffee shop chats: how a Deaf regular changed my morning</h4>
+                            <p>A barista in Portland shares what happened when she learned three signs — and why it turned into a lasting friendship.</p>
+                        </div>
+                    </a>
+                    
+                    <a href="#" class="archive-card">
+                        <img src="https://images.unsplash.com/photo-1516307365426-bea591f05011?auto=format&fit=crop&w=800&q=80" alt="Performers on stage">
+                        <div class="card-text">
+                            <span class="card-meta" style="color: turquoise;">Culture &middot; </span><span style="font-size: 13px;"> Jun 21, 2026</span>
+                            <h4>The theatre lights that speak: Deaf performers on stage</h4>
+                            <p>From ASL Shakespeare to Broadway's shadow interpreters — the artists rewriting what a live show looks like.</p>
+                        </div>
+                    </a>
+
+                    <a href="#" class="archive-card">
+                        <img src="/.netlify/images?url=/images/olderpost_1.jpg&w=600&fm=webp" alt="Learning sign">
+                        <div class="card-text">
+                            <span class="card-meta" style="color: turquoise;">Learn Sign &middot;</span> <span style="font-size: 13px;">Jun 14, 2026</span>
+                            <h4>Fingerspelling faster: five drills that actually work</h4>
+                            <p>Skip the alphabet charts. These short daily drills are how signers build real recognition speed.</p>
+                        </div>
+                    </a>
+
+                    <a href="#" class="archive-card">
+                        <img src="/.netlify/images?url=/images/oldpost_2.jpg&w=600&fm=webp" alt="Writing desk">
+                        <div class="card-text">
+                            <span class="card-meta" style="color: turquoise;">Voices &middot;</span> <span style="font-size: 13px;"> Jun 07, 2026</span>
+                            <h4>Writing letters, writing lives: a Deaf memoirist's craft</h4>
+                            <p>How memoirist Naomi Reyes turns family archives into essays that both Deaf and hearing readers keep coming back to.</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <!-- Right Column: Sidebar -->
+        <aside class="sidebar">
+            <!-- Myth vs Fact Widget -->
+            <div class="widget">
+                <span class="eyebrow">Daily Spark</span>
+                <h3>Myth vs. Fact</h3>
+                
+                <div class="fact-block-myth">
+                    <span class="label">Myth</span>
+                    <p>"Sign language is universal — every Deaf person around the world uses the same one."</p>
+                </div>
+                
+                <div class="fact-block-fact">
+                    <span class="label">Fact</span>
+                    <p>There are over 300 distinct sign languages. ASL, BSL and Auslan all use English — but their grammars are entirely different.</p>
+                </div>
+            </div>
+
+            <!-- Quote of the Week Widget -->
+            <div class="widget sidebar-quote-widget">
+                <span class="eyebrow">Perspective</span>
+                <h3>Quote of the Week</h3>
+                <div class="quote-container">
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <blockquote>
+                        "Deafness is not a disability, but a fascinating culture and a unique way of experiencing the world."
+                    </blockquote>
+                    <cite>— Community Voice</cite>
+                </div>
+            </div>
+
+            <!-- Sign of the Week Widget -->
+            <div class="widget sidebar-sign-widget">
+                <span class="eyebrow">Weekly Vocabulary</span>
+                <h3>Sign of the Week</h3>
+                <p class="sign-description">Expand your vocabulary. Pay close attention to handshape, orientation, and movement.</p>
+                
+                <!-- Video/GIF container placeholder -->
+                <div class="sidebar-media-box">
+                    <span class="media-placeholder">[ Visual Sign Demonstration Loop ]</span>
+                </div>
+                
+                <a href="learn-sign.html" class="widget-link">Practice More Signs <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <!-- Newsletter Widget -->
+            <div class="widget2">
+                <span class="eyebrow">Quick Newsletter</span>
+                <h3>Want weekly sign language tips, myth vs. fact, stories, events and quotes?</h3>
+                <form id="newsletter-form" class="newsletter-form">
+                    <input type="email" placeholder="Enter Email address Here" required>
+                    <button type="submit" class="btn">Subscribe</button>
+                </form>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p>© 2026 Hands & Voices. All rights reserved.</p>
+            
+            <div class="footer-socials">
+                <a href="#" aria-label="Instagram" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" aria-label="X (Twitter)" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" aria-label="Facebook" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" aria-label="Pinterest" target="_blank"><i class="fa-brands fa-pinterest-p"></i></a>
+                <a href="#" aria-label="TikTok" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="#" aria-label="WhatsApp Channel" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#" aria-label="You Tube" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,843 @@
+/* --- Variables & Reset --- */
+:root {
+    --text-main: #111827;
+    --text-muted: black;
+    --bg-main: #fdfbf7;
+    --bg-alt: #f3f4f6;
+    --accent: #0f172a;
+    --border: #e5e7eb;
+    --font-family: 'Inter', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    color: var(--text-main);
+    background-color:#f6f2eb;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+.section-headers{
+    margin-bottom: 2rem;                 /* Space between the line and the card below */
+    border-bottom: 1px solid #e5e7eb;   /* The horizontal divider line */
+    padding-bottom: 1.25rem;
+}
+/* --- Navigation --- */
+.header {
+    border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+    padding: 1rem 0;
+    background-color:rgba(252, 250, 246, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: backround-color 0.3s ease, backdrop-filter 0.3s ease;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: 40px;
+}
+
+.logo-initials {
+    background: var(--accent);
+    color: white;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    border-radius: 50%;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.tagline {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    /* letter-spacing: 0.05em; */
+    /* margin-top: 0.1rem; */
+}
+
+.desktop-nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.desktop-nav a {
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: color 0.2s;
+    text-transform:uppercase;
+
+}
+/* on hover display border left to right teal color */
+/* Base styling targeting the desktop navigation links */
+.desktop-nav ul li a {
+    font-weight: 500;
+    font-size: 0.8rem;
+    color: var(--navy-dark);
+    text-transform: uppercase;
+    font-weight: bolder;
+    letter-spacing: 0.02em;
+    padding-bottom: 0.25rem;
+    position: relative; /* CRITICAL: Acts as an anchor for the absolute fake underline */
+    transition: color 0.3s ease;
+}
+
+/* Creating the fake underline using ::after */
+.desktop-nav ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;                 /* The thickness of your underline */
+    background-color: turquoise;   /* Your Turquoise Teal color */
+    
+    /* Animation magic setup */
+    transform: scaleX(0);        /* Start shrunken down to 0 width */
+    transform-origin: bottom left; /* Forces the scaling expansion to start from the LEFT */
+    transition: transform 0.4s ease; /* Controls the speed (0.4s) and smoothness (ease) */
+}
+
+/* Hover state: change text color and grow the line to full size */
+.desktop-nav ul li a:hover {
+    color: turquoise;
+}
+
+.desktop-nav ul li a:hover::after {
+    transform: scaleX(1);        /* Scales the line horizontally to 100% width */
+}
+
+/* Active state: keeps the line permanently visible on the current page link */
+.desktop-nav ul li a.active {
+    color: turquoise;
+}
+
+.desktop-nav ul li a.active::after {
+    transform: scaleX(1);        /* Keeps it full width for the active page */
+}
+.desktop-nav a:hover{
+    /* color:#00a3a6; */
+    border-bottom-color:#00a3a6 ;
+}
+.desktop-nav a:hover, .desktop-nav a.active {
+    color: #00a3a6;;
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.mobile-nav {
+    display: none;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--border);
+}
+
+.mobile-nav.open {
+    display: block;
+}
+
+.mobile-nav ul {
+    list-style: none;
+}
+
+.mobile-nav li {
+    padding: 0.5rem 0;
+}
+/* 1. Fix the main container constraints */
+.main-container {
+    width: 100%;
+    max-width: 1024px; /* Lowering from 1200px to tighten the layout */
+    margin: 0 auto;
+    padding: 0 2rem; /* Guarantees breathing room on the left/right edges */
+    box-sizing: border-box;
+}
+
+/* 2. Tighten text-heavy sections (like the FAQ accordion container) */
+.small-width-container {
+    max-width: 720px; /* Forces text and FAQs to stay narrow, elegant, and readable */
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* 3. Adjust your Grid Layout Gaps */
+.connect-hero-grid, 
+.video-layout-grid, 
+.contact-layout-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr; /* Slashes excessive stretching */
+    gap: 5rem; /* Keeps a distinct, clean separation between the two columns */
+    align-items: start;
+}
+
+/* 4. Fix form internal magnification */
+.contact-form-wrapper {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(12, 26, 48, 0.06);
+    border-radius: 20px;
+    padding: 2.5rem; /* Generous inside padding stops fields from looking bloated */
+}
+/* --- Section 1: Hero Layout --- */
+.hero-text-content span{
+    padding-bottom: 40px;
+    font-family: sans-serif;
+}
+.section-eyebrow-teal{
+    color: turquoise;
+}
+.connect-hero-section {
+    padding: 3rem 0 5rem;
+}
+.connect-hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+.hero-title {
+    font-size: 2.85rem;
+    font-weight: 700;
+    line-height: 1.15;
+    margin: 0 0 1.5rem 0;
+}
+.hero-body-p {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: #1e293b;
+    margin-bottom: 1.25rem;
+}
+.hero-body-p.text-muted {
+    color: #475569;
+}
+.hero-image-wrapper {
+    width: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+}
+.hero-avatar-img {
+    width: 100%;
+    max-height: 450px;
+    display: block;
+    object-fit: cover;
+}
+
+/* --- Section 2: Mission Style Sheets --- */
+.mission-section {
+    padding: 5rem 0;
+    background-color: #fdfbf9;
+}
+.mission-heading {
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+    max-width: 950px;
+    margin-bottom: 3rem;
+}
+.mission-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+.mission-card {
+    border: 1px solid rgba(12, 26, 48, 0.1);
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 2rem;
+    border-radius: 16px;
+}
+.mission-card h3 {
+    font-size: 1.25rem;
+    margin: 0 0 1rem 0;
+    font-weight: 700;
+}
+.mission-card p {
+    color: #334155;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* --- Section 3: Video Grid Section --- */
+.welcome-video-section {
+    padding: 5rem 0;
+}
+.video-layout-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 4rem;
+    align-items: start;
+}
+.video-heading {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin: 0 0 1.25rem 0;
+}
+.video-subtext {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: #334155;
+    margin-bottom: 1.5rem;
+}
+.video-bullets-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.video-bullets-list li {
+    margin-bottom: 0.75rem;
+    display: flex;
+    gap: 0.5rem;
+    color: #1e293b;
+}
+.bullet-dot {
+    color: #475569;
+}
+
+/* --- Video Canvas Player Window --- */
+.video-player-frame {
+    background-color: #0c1a30;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.video-canvas {
+    height: 380px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.video-play-trigger {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: #00a3a3;
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 4px;
+}
+.video-player-controls-row {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 1.25rem;
+    display: flex;
+    gap: 0.5rem;
+}
+.player-pill-btn {
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.video-player-footer {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 1.25rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* --- Section 4: Contact Form Setup --- */
+.contact-form-section {
+    padding: 5rem 0;
+}
+.contact-layout-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 4rem;
+}
+.contact-heading {
+    font-size: 2.5rem;
+    margin: 0 0 1rem 0;
+}
+.contact-intro-text {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: #334155;
+    margin-bottom: 2rem;
+}
+.accessibility-notice-card {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-left: 4px solid #00a3a3;
+    padding: 1.5rem;
+    border-radius: 0 12px 12px 0;
+}
+.accessibility-notice-card h4 {
+    margin: 0 0 0.5rem 0;
+    font-weight: 700;
+}
+.accessibility-notice-card p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #475569;
+}
+
+/* --- Inputs Form Grid --- */
+.contact-form-wrapper {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(12, 26, 48, 0.06);
+    border-radius: 20px;
+    padding: 2.5rem;
+}
+.form-row-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+}
+.input-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+}
+.input-block label {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+.input-block input, .input-block textarea {
+    border: 1px solid rgba(12, 26, 48, 0.15);
+    background-color: transparent;
+    padding: 0.85rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+}
+.input-hint-text {
+    font-size: 0.8rem;
+    color: #64748b;
+}
+
+/* Custom Pills / Radios */
+.radio-selection-block {
+    margin: 2rem 0;
+}
+.radio-group-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 0.75rem;
+}
+.custom-radio-row {
+    display: flex;
+    gap: 1rem;
+}
+.radio-pill-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background-color: rgba(12, 26, 48, 0.03);
+    border: 1px solid rgba(12, 26, 48, 0.08);
+    border-radius: 30px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    font-weight: 500;
+}
+.radio-pill-option input { display: none; }
+.custom-radio-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid #64748b;
+    display: inline-block;
+}
+.radio-pill-option.active-pill {
+    background-color: #e6f6f6;
+    border-color: #00a3a3;
+}
+.radio-pill-option.active-pill .custom-radio-dot {
+    border-color: #00a3a3;
+    background-color: #00a3a3;
+    box-shadow: inset 0 0 0 2px #e6f6f6;
+}
+
+.form-submit-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+}
+.reply-guarantee-text {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #0c1a30;
+}
+.form-submit-button {
+    background-color: #0c1a30;
+    color: white;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border: none;
+    padding: 1rem 1.75rem;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   SECTION 5: FAQ ACCORDION STYLES
+   ========================================================================== */
+
+.faq-accordion-section {
+    padding: 5rem 0;
+    background-color: #ffffff; /* Clean white backdrop fallback */
+}
+
+.faq-main-heading {
+    font-size: 2.25rem;
+    color: #1b1e34; /* Dark corporate headline navy */
+    font-weight: 700;
+    margin: 0.5rem 0 2.5rem 0;
+    letter-spacing: -0.5px;
+}
+
+/* --- Accordion List Wrapper --- */
+.accordion-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem; /* Even breathing space between individual cards */
+    max-width: 850px; /* Kept focused within your small-width-container constraints */
+    margin: 0 auto;
+}
+
+/* --- Individual Accordion Card --- */
+.accordion-item {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Highlight card border and add a soft shadow elevation when open or hovered */
+.accordion-item:hover,
+.accordion-item.active {
+    border-color: turquoise;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.02);
+}
+
+/* --- The Accordion Trigger Bar --- */
+.accordion-trigger {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    border: none;
+    padding: 1.5rem;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+    font-family: 'Inter', sans-serif; /* Maintains consistency with your core typography */
+}
+
+.accordion-trigger span {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #1b1e34;
+    line-height: 1.4;
+    transition: color 0.3s ease;
+}
+
+/* Highlight text color on hover or when card expands */
+.accordion-item:hover .accordion-trigger span,
+.accordion-item.active .accordion-trigger span {
+    color: #00a3a3; /* Deep teal/turquoise visual push */
+}
+
+/* --- Chevron Indicator Arrow --- */
+.accordion-trigger .fa-chevron-down {
+    color: #94a3b8;
+    font-size: 1rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+    padding-left: 1rem;
+}
+
+.accordion-item.active .accordion-trigger .fa-chevron-down {
+    color: turquoise;
+    /* Rotation animation transformation layer is handled smoothly via your script.js code */
+}
+
+/* --- Content Answer Panel --- */
+.accordion-content-panel {
+    max-height: 0; /* Keeps panels completely closed by default */
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    background-color: #f8fafc; /* Sleek, soft gray background contrast to anchor answers */
+    transition: max-height 0.35s ease, opacity 0.3s ease, visibility 0.3s;
+    border-top: 1px solid transparent;
+}
+
+/* Activated expansion class layer toggle */
+.accordion-item.active .accordion-content-panel {
+    max-height: 200px; /* Ensures text wrapper panel container has enough room to display open */
+    opacity: 1;
+    visibility: visible;
+    border-top-color: #f1f5f9; /* Reveals separating divider border lines when extended */
+}
+
+.accordion-content-panel p {
+    font-size: 1rem;
+    color: #475569; /* Balanced charcoal for fluid readability body contrast text */
+    line-height: 1.6;
+    padding: 1.5rem;
+    margin: 0;
+}
+
+/* --- Responsive Adaptability Breakpoints --- */
+@media (max-width: 768px) {
+    .faq-accordion-section {
+        padding: 4rem 0;
+    }
+
+    .faq-main-heading {
+        font-size: 1.75rem;
+        margin-bottom: 2rem;
+    }
+
+    .accordion-trigger {
+        padding: 1.25rem;
+    }
+
+    .accordion-trigger span {
+        font-size: 1.05rem;
+    }
+
+    .accordion-content-panel p {
+        padding: 1.25rem;
+        font-size: 0.95rem;
+    }
+}
+
+
+/* --- Footer --- */
+/* --- Footer Styling --- */
+/* --- FOOTER PLATFORM STRUCT --- */
+.site-footer {
+    /* border-top: 1px solid gray; */
+    padding: 2.5rem 0;
+    background-color: #f4edde;
+}
+
+.footer-content-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.copyright-text {
+    font-size: 0.9rem;
+    color: var(--navy-dark);
+    margin-left: 30px;
+}
+
+.social-links-wrapper {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.social-circle-link {
+    background-color: white;
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(12, 26, 48, 0.1);
+    border-radius: 50px;
+    color: var(--navy-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.social-circle-link:hover {
+    /* border-color: var(--navy-dark); */
+    background-color: turquoise;
+}
+
+.privacy-link {
+    text-decoration: none;
+    color: var(--navy-dark);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-right: 30px;
+}
+/* Mobile adjustments */
+@media (max-width: 640px) {
+    .footer-content-row {
+        flex-direction: column; /* Stacks components cleanly on tiny mobile layout screens */
+        text-align: center;
+        gap: 10px;
+    }
+}
+@media (max-width: 768px) {
+    .desktop-nav {
+        display: none;
+    }
+    .mobile-menu-btn {
+        display: block;
+    }
+    .featured-content h2 {
+        font-size: 1.5rem;
+    }
+}
+/* --- Responsive Layout Rules --- */
+/* ==========================================================================
+   HANDS & VOICES - CONNECT PAGE MOBILE RESPONSIVE ENGINE
+   ========================================================================== */
+
+/* Tablet & Mobile Layout Re-shaping Breakpoint */
+@media (max-width: 768px) {
+    /* 1. Reset Global Container Margins */
+    .main-container {
+        padding: 0 1.25rem; /* Margins stay tight on small frames */
+    }
+    
+    .small-width-container {
+        padding: 0 1.25rem;
+    }
+
+    /* 2. Break Multi-Column Side Grids Into Stacked Layouts */
+    .connect-hero-grid, 
+    .video-layout-grid, 
+    .contact-layout-grid,
+    .split-connect-grid {
+        grid-template-columns: 1fr; /* Force 1 item per row */
+        gap: 2.5rem; /* Reduce large structural spacing gaps */
+    }
+
+    /* 3. Drop Section 2 Mission Framework to Stacked Rows */
+    .mission-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    /* 4. Downscale Large Headline Magnifications */
+    .hero-title {
+        font-size: 2.15rem; /* Shrinks the huge 3rem font down */
+        line-height: 1.2;
+    }
+
+    .mission-heading,
+    .video-heading,
+    .contact-heading,
+    .faq-main-heading {
+        font-size: 1.75rem;
+        line-height: 1.25;
+    }
+
+    /* 5. Section Specific Frame Fixes */
+    .hero-image-wrapper {
+        order: -1; /* Flips the graphic above the text content on mobile views */
+        max-height: 300px;
+    }
+
+    .video-canvas {
+        height: 260px; /* Compress player canvas window aspect ratio */
+    }
+
+    /* 6. Contact Form Box Tweaks */
+    .contact-form-wrapper {
+        padding: 1.5rem; /* Strips large inner padding so it doesn't clip buttons */
+    }
+
+    .form-row-split {
+        grid-template-columns: 1fr; /* Name and Email inputs stack up neatly */
+        gap: 0;
+    }
+
+    /* Push radio selection items into columns if they crowd on tablet views */
+    .custom-radio-row {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .radio-pill-option {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .form-submit-footer {
+        flex-direction: column-reverse; /* Button stacks directly over status hints */
+        align-items: stretch;
+        gap: 1.25rem;
+        text-align: center;
+    }
+
+    .form-submit-button {
+        width: 100%; /* Massive tapping target area on mobile screens */
+    }
+}
+
+/* Micro-Screen Mobile Breakpoint (Narrow Phones) */
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.85rem;
+    }
+
+    .mission-heading,
+    .video-heading,
+    .contact-heading,
+    .faq-main-heading {
+        font-size: 1.5rem;
+    }
+
+    .video-canvas {
+        height: 200px;
+    }
+    
+    .accordion-trigger {
+        font-size: 1rem; /* Keeps long questions from wrapping awkwardly */
+        padding: 1.25rem 0;
+    }
+}

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Sign - Hands & Voices</title>
+    <link rel="stylesheet" href="learn-sign.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-initials">H&V</span>
+                <div class="logo-text">
+                    <span class="brand-name">Hands & Voices</span>
+                    <span class="tagline">Deaf culture, told well</span>
+                </div>
+            </a>
+            
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="deaf-culture-101.html">Deaf Culture 101</a></li>
+                    <li><a href="deaf-world.html">Deaf World</a></li>
+                    <li><a href="learn-sign.html" class="active">Learn Sign</a></li>
+                    <li><a href="connect.html">Connect</a></li>
+                </ul>
+            </nav>
+
+            <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+        </div>
+        
+        <!-- Mobile Navigation Dropdown -->
+        <nav class="mobile-nav" id="mobile-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="deaf-culture-101.html">Deaf Culture 101</a></li>
+                <li><a href="deaf-world.html">Deaf World</a></li>
+                <li><a href="learn-sign.html" class="active">Learn Sign</a></li>
+                <li><a href="connect.html">Connect</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="main-container hero-grid">
+            <div class="hero-content">
+                <span class="section-eyebrow">LEARN SIGN</span>
+                <h1 class="hero-title">Your hands can talk. Let's teach them how.</h1>
+                <p class="hero-description">
+                    Start with the alphabet and numbers, then move into the grammar that makes signing feel natural — including the face and body cues that carry half the meaning.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#alphabet-section" class="pill-btn">Alphabet & Numbers</a>
+                    <a href="#videos" class="pill-btn">Videos</a>
+                </div>
+            </div>
+            <div class="hero-image-wrapper">
+                <img src="/.netlify/images?url=/images/learn_2.jpg&w=600&fm=webp" alt="Hands signing against warm backlighting" class="hero-image">
+            </div>
+        </div>
+    </section>
+
+    <section id="alphabet-section" class="content-section">
+        <div class="main-container">
+            <span class="section-eyebrow">01 · INTERACTIVE</span>
+            <h2 class="section-heading">Alphabet & numbers</h2>
+            <p class="section-subtext">
+                Tap any letter or number to see how the handshape is formed. This is fingerspelling — the backbone you fall back on for names, brands, and any word you don't yet know the sign for.
+            </p>
+
+            <div class="interactive-alphabet-grid">
+                <div class="grid-panel-left">
+                    <div class="toggle-container">
+                        <button id="toggle-az" class="toggle-btn active">A–Z</button>
+                        <button id="toggle-09" class="toggle-btn">0–9</button>
+                    </div>
+                    
+                    <div id="character-buttons-grid" class="buttons-layout-grid">
+                        <button class="char-select-item active-selection">A</button>
+                        <button class="char-select-item">B</button>
+                        <button class="char-select-item">C</button>
+                        <button class="char-select-item">D</button>
+                        <button class="char-select-item">E</button>
+                        <button class="char-select-item">F</button>
+                        <button class="char-select-item">G</button>
+                        <button class="char-select-item">H</button>
+                        <button class="char-select-item">I</button>
+                        <button class="char-select-item">J</button>
+                        <button class="char-select-item">K</button>
+                        <button class="char-select-item">L</button>
+                        <button class="char-select-item">M</button>
+                        <button class="char-select-item">N</button>
+                        <button class="char-select-item">O</button>
+                        <button class="char-select-item">P</button>
+                        <button class="char-select-item">Q</button>
+                        <button class="char-select-item">R</button>
+                        <button class="char-select-item">S</button>
+                        <button class="char-select-item">T</button>
+                        <button class="char-select-item">U</button>
+                        <button class="char-select-item">V</button>
+                        <button class="char-select-item">W</button>
+                        <button class="char-select-item">X</button>
+                        <button class="char-select-item">Y</button>
+                        <button class="char-select-item">Z</button>
+                    </div>
+                </div>
+
+                <div class="preview-card" id="preview-card">
+                    <span class="preview-eyebrow">FINGERSPELLING</span>
+                    <div class="preview-display-row">
+                        <div class="preview-box-avatar" id="preview-avatar">A</div>
+                        <div class="preview-text-details">
+                            <h3 class="preview-title" id="preview-title">Sign for "A"</h3>
+                            <p class="preview-desc" id="preview-desc">Closed fist, thumb rests along the side.</p>
+                        </div>
+                    </div>
+                    <ul class="preview-tips-list" id="preview-tips">
+                        <li>Keep your dominant hand in a comfortable "signing space" near your shoulder.</li>
+                        <li>Palm usually faces the person you're signing to.</li>
+                        <li>Pause briefly between letters — don't rush.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video learning section -->
+        <section id="videos">
+            <section class="section video-topics-section">
+                <div class="section-header">
+                    <span class="eyebrow">Video Learning</span>
+                    <h3>Explore Our YouTube Modules</h3>
+                </div>
+
+                <div class="archive-grid">
+                    <a href="https://youtube.com/YOUR_CHANNEL_OR_PLAYLIST_LINK" target="_blank" class="video-teaser-card">
+                        <div class="video-frame-wrapper">
+                            <img src="/.netlify/images?url=/images/learn_1.jpg&w=600&fm=webp" alt="Lesson Thumbnail">
+                            
+                            <div class="video-frame-overlay">
+                                <div class="fake-play-btn">
+                                    <i class="fa-solid fa-play"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-text" style="padding: 1.5rem;">
+                            <span class="card-meta" style="color: turquoise; font-weight: 600; font-size: 13px; text-transform: uppercase;">
+                                Level 1 &middot; Watch on YouTube <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 11px; margin-left: 2px;"></i>
+                            </span>
+                            <h4 style="margin: 0.5rem 0; font-size: 1.2rem; color: #1b1e34;">Basic Greetings & Phrases</h4>
+                            <p style="font-size: 14px; color: #475569; line-height: 1.5;">Click to head over to our channel and practice essential conversational sign foundations in motion.</p>
+                        </div>
+                    </a>
+                </div>
+
+                        <div class="archive-grid">
+                    <a href="https://youtube.com/YOUR_CHANNEL_OR_PLAYLIST_LINK" target="_blank" class="video-teaser-card">
+                        <div class="video-frame-wrapper">
+                            <img src="/.netlify/images?url=/images/oldpost_2.jpg&w=600&fm=webp" alt="Lesson Thumbnail">
+                            
+                            <div class="video-frame-overlay">
+                                <div class="fake-play-btn">
+                                    <i class="fa-solid fa-play"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-text" style="padding: 1.5rem;">
+                            <span class="card-meta" style="color: turquoise; font-weight: 600; font-size: 13px; text-transform: uppercase;">
+                                Level 1 &middot; Watch on YouTube <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 11px; margin-left: 2px;"></i>
+                            </span>
+                            <h4 style="margin: 0.5rem 0; font-size: 1.2rem; color: #1b1e34;">Alphabets and Numbers</h4>
+                            <p style="font-size: 14px; color: #475569; line-height: 1.5;">Click to head over to our channel and practice essential conversational sign foundations in motion.</p>
+                        </div>
+                    </a>
+                </div>
+
+                        <div class="archive-grid">
+                    <a href="https://youtube.com/YOUR_CHANNEL_OR_PLAYLIST_LINK" target="_blank" class="video-teaser-card">
+                        <div class="video-frame-wrapper">
+                            <img src="/.netlify/images?url=/images/culture_2.jpg&w=600&fm=webp" alt="Lesson Thumbnail">
+                            
+                            <div class="video-frame-overlay">
+                                <div class="fake-play-btn">
+                                    <i class="fa-solid fa-play"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-text" style="padding: 1.5rem;">
+                            <span class="card-meta" style="color: turquoise; font-weight: 600; font-size: 13px; text-transform: uppercase;">
+                                Level 1 &middot; Watch on YouTube <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 11px; margin-left: 2px;"></i>
+                            </span>
+                            <h4 style="margin: 0.5rem 0; font-size: 1.2rem; color: #1b1e34;">Linguistic and Grammar rules</h4>
+                            <p style="font-size: 14px; color: #475569; line-height: 1.5;">Click to head over to our channel and practice essential conversational sign foundations in motion.</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </section?
+    <!-- FOOTER INTERACTION BLOCK -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p>© 2026 Hands & Voices. All rights reserved.</p>
+            
+            <div class="footer-socials">
+                <a href="#" aria-label="Instagram" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" aria-label="X (Twitter)" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" aria-label="Facebook" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" aria-label="Pinterest" target="_blank"><i class="fa-brands fa-pinterest-p"></i></a>
+                <a href="#" aria-label="TikTok" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="#" aria-label="WhatsApp Channel" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#" aria-label="You Tube" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

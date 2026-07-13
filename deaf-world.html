@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deaf World - Hands & Voices</title>
+    <link rel="stylesheet" href="deaf-world.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-initials">H&V</span>
+                <div class="logo-text">
+                    <span class="brand-name">Hands & Voices</span>
+                    <span class="tagline">Deaf culture, told well</span>
+                </div>
+            </a>
+            
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="deaf-culture-101.html">Deaf Culture 101</a></li>
+                    <li><a href="deaf-world.html" class="active">Deaf World</a></li>
+                    <li><a href="learn-sign.html">Learn Sign</a></li>
+                    <li><a href="connect.html">Connect</a></li>
+                </ul>
+            </nav>
+
+            <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+        </div>
+        
+        <!-- Mobile Navigation Dropdown -->
+        <nav class="mobile-nav" id="mobile-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="deaf-culture-101.html">Deaf Culture 101</a></li>
+                <li><a href="deaf-world.html" class="active">Deaf World</a></li>
+                <li><a href="learn-sign.html">Learn Sign</a></li>
+                <li><a href="connect.html">Connect</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <!-- Area 2: Deaf World Hero Split Section (image_d14f1f.jpg) -->
+    <section class="section-hero">
+        <div class="container hero-split-layout">
+            <div class="hero-text-side">
+                <span class="eyebrow-accent">DEAF WORLD</span>
+                <h1 class="hero-display-title">Voices, stories, and movements — from Deaf communities across the map.</h1>
+                <p class="hero-paragraph">Reported stories, first-person columns, a running events board, and the organizations doing the advocacy work. If it is happening in the Deaf world, you will find a thread of it here.</p>
+                <div class="hero-anchors-row">
+                    <a href="#stories" class="chip-btn"><i class="fa-solid fa-book-open"></i> Stories</a>
+                    <a href="#guest-column" class="chip-btn"><i class="fa-solid fa-pen-nib"></i> Guest Column</a>
+                    <a href="#events" class="chip-btn"><i class="fa-solid fa-calendar-days"></i> Events</a>
+                    <a href="#advocacy" class="chip-btn"><i class="fa-solid fa-bullhorn"></i> Advocacy</a>
+                </div>
+            </div>
+            <div class="hero-image-side">
+                <img src="/.netlify/images?url=/images/deafworld_2.jpg&w=600&fm=webp" alt="Deaf community members interacting outdoors" class="rounded-hero-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- Area 3: Reporting from global Deaf community Section (image_d1525e.png) -->
+    <section id="stories" class="section-global-stories">
+        <div class="container">
+            <div class="section-header">
+                <span class="eyebrow">STORIES</span>
+                <h3>Reporting from the global Deaf community</h3>
+            </div>
+            <p class="section-intro-text">Long-form and short reads from Deaf writers, correspondents and community members.</p>
+            
+            <div class="myths-layout-grid">
+                <!-- Story Card 1 -->
+                <div class="myth-card">
+                    <div class="myth-head">
+                        <span class="card-meta-tag"><i class="fa-solid fa-location-dot"></i> TOKYO, JAPAN</span>
+                        <span class="story-card-title">The Deaf café where silence is the loudest welcome</span>
+                    </div>
+                    <div class="fact-body">
+                        <p>Inside a Shibuya coffee bar where the entire staff signs — and hearing customers order in JSL for the first time.</p>
+                        <div class="card-footer-action">
+                            <span class="read-time-tag">8 min read</span>
+                            <a href="#" class="accent-tag font-semibold text-decoration-none">Read story →</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Story Card 2 -->
+                <div class="myth-card">
+                    <div class="myth-head">
+                        <span class="card-meta-tag"><i class="fa-solid fa-location-dot"></i> NAIROBI, KENYA</span>
+                        <span class="story-card-title">KSL classrooms are rewriting what 'inclusive' means</span>
+                    </div>
+                    <div class="fact-body">
+                        <p>A generation of bilingual Deaf teachers is turning schools into places where Deaf children thrive, not just cope.</p>
+                        <div class="card-footer-action">
+                            <span class="read-time-tag">6 min read</span>
+                            <a href="#" class="accent-tag font-semibold text-decoration-none">Read story →</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Story Card 3 -->
+                <div class="myth-card">
+                    <div class="myth-head">
+                        <span class="card-meta-tag"><i class="fa-solid fa-location-dot"></i> BUENOS AIRES, ARGENTINA</span>
+                        <span class="story-card-title">Signing tango: choreography built for Deaf dancers</span>
+                    </div>
+                    <div class="fact-body">
+                        <p>Vibration through the floor, mirrored partners, and a beat you feel first — a company reimagines a national art form.</p>
+                        <div class="card-footer-action">
+                            <span class="read-time-tag">5 min read</span>
+                            <a href="#" class="accent-tag font-semibold text-decoration-none">Read story →</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Story Card 4 -->
+                <div class="myth-card">
+                    <div class="myth-head">
+                        <span class="card-meta-tag"><i class="fa-solid fa-location-dot"></i> REYKJAVIK, ICELAND</span>
+                        <span class="story-card-title">A national broadcaster that signs the news, live</span>
+                    </div>
+                    <div class="fact-body">
+                        <p>How Iceland made ISL interpretation a default, not a Friday-afternoon afterthought.</p>
+                        <div class="card-footer-action">
+                            <span class="read-time-tag">7 min read</span>
+                            <a href="#" class="accent-tag font-semibold text-decoration-none">Read story →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Area 5: Events Board System Section (image_d155ea.png) -->
+    <section id="events" class="section-events-board">
+        <div class="container">
+            <div class="section-header">
+                <span class="eyebrow">EVENTS CALENDAR & BOARD</span>
+                <h3>What's on across the Deaf world</h3>
+            </div>
+            <p class="section-intro-text">Conferences, festivals, meetups, livestreams and community walks — updated as we hear about them.</p>
+            
+            <div class="events-board-wrapper">
+                <!-- Row 1 -->
+                <div class="event-board-row">
+                    <div class="event-date-stack">
+                        <span class="ev-month">Jul 18</span>
+                        <span class="ev-year">2026</span>
+                    </div>
+                    <div class="event-main-details">
+                        <h6>World Federation of the Deaf — Global Youth Camp</h6>
+                        <div class="event-meta-subline">
+                            <span><i class="fa-solid fa-globe"></i> Vienna, Austria</span>
+                            <span><i class="fa-solid fa-clock"></i> 5-day residency</span>
+                        </div>
+                    </div>
+                    <div class="event-actions-pill-box">
+                        <span class="badge-status-pill in-person">IN PERSON</span>
+                        <a href="#" class="event-details-link">Details →</a>
+                    </div>
+                </div>
+                <!-- Row 2 -->
+                <div class="event-board-row">
+                    <div class="event-date-stack">
+                        <span class="ev-month">Aug 04</span>
+                        <span class="ev-year">2026</span>
+                    </div>
+                    <div class="event-main-details">
+                        <h6>International Week of Deaf People — kickoff livestream</h6>
+                        <div class="event-meta-subline">
+                            <span><i class="fa-solid fa-globe"></i> Streaming worldwide</span>
+                            <span><i class="fa-solid fa-clock"></i> 18:00 UTC</span>
+                        </div>
+                    </div>
+                    <div class="event-actions-pill-box">
+                        <span class="badge-status-pill online">ONLINE</span>
+                        <a href="#" class="event-details-link">Details →</a>
+                    </div>
+                </div>
+                <!-- Row 3 -->
+                <div class="event-board-row">
+                    <div class="event-date-stack">
+                        <span class="ev-month">Sep 12</span>
+                        <span class="ev-year">2026</span>
+                    </div>
+                    <div class="event-main-details">
+                        <h6>Deaf Film Festival — juried shorts and panels</h6>
+                        <div class="event-meta-subline">
+                            <span><i class="fa-solid fa-globe"></i> Toronto, Canada</span>
+                            <span><i class="fa-solid fa-clock"></i> Weekend pass</span>
+                        </div>
+                    </div>
+                    <div class="event-actions-pill-box">
+                        <span class="badge-status-pill in-person">IN PERSON</span>
+                        <a href="#" class="event-details-link">Details →</a>
+                    </div>
+                </div>
+                <!-- Row 4 -->
+                <div class="event-board-row">
+                    <div class="event-date-stack">
+                        <span class="ev-month">Sep 23</span>
+                        <span class="ev-year">2026</span>
+                    </div>
+                    <div class="event-main-details">
+                        <h6>International Day of Sign Languages — city walk</h6>
+                        <div class="event-meta-subline">
+                            <span><i class="fa-solid fa-globe"></i> 40+ cities</span>
+                            <span><i class="fa-solid fa-clock"></i> Local time</span>
+                        </div>
+                    </div>
+                    <div class="event-actions-pill-box">
+                        <span class="badge-status-pill community">COMMUNITY</span>
+                        <a href="#" class="event-details-link">Details →</a>
+                    </div>
+                </div>
+                <!-- Row 5 -->
+                <div class="event-board-row">
+                    <div class="event-date-stack">
+                        <span class="ev-month">Oct 05</span>
+                        <span class="ev-year">2026</span>
+                    </div>
+                    <div class="event-main-details">
+                        <h6>Deaf Tech Summit — accessibility & AI captioning</h6>
+                        <div class="event-meta-subline">
+                            <span><i class="fa-solid fa-globe"></i> Berlin, Germany</span>
+                            <span><i class="fa-solid fa-clock"></i> Two-day summit</span>
+                        </div>
+                    </div>
+                    <div class="event-actions-pill-box">
+                        <span class="badge-status-pill hybrid">HYBRID</span>
+                        <a href="#" class="event-details-link">Details →</a>
+                    </div>
+                </div>
+
+                <!-- Inner Callout Footer (image_d155ea.png bottom) -->
+                <div class="inner-board-footer">
+                    <div class="inner-footer-msg">
+                        <strong>Running an event?</strong>
+                        <span>Submit it to the community board and we'll review within 48 hours.</span>
+                    </div>
+                    <a href="connect.html" class="turquoise-action-btn">Submit an event <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Area 6: Advocacy & Resources Section (image_d15a02.png) -->
+    <section id="advocacy" class="section-advocacy">
+        <div class="container">
+            <div class="section-header">
+                <span class="eyebrow">ADVOCACY & RESOURCES</span>
+                <h3>The organizations doing the work</h3>
+            </div>
+            <p class="section-intro-text">Where to donate, where to volunteer, and where to point a friend who wants to help.</p>
+            
+            <div class="myths-layout-grid">
+                <!-- Org 1 -->
+                <div class="myth-card">
+                    <div class="fact-body item-padding-override">
+                        <div class="org-card-top-row">
+                            <span class="story-card-title">World Federation of the Deaf</span>
+                            <i class="fa-solid fa-bullhorn org-icon-right"></i>
+                        </div>
+                        <p class="org-description">Global federation representing ~70 million Deaf people across 130+ national associations.</p>
+                        <a href="#" class="accent-tag org-outbound-link">Visit WFD <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+                <!-- Org 2 -->
+                <div class="myth-card">
+                    <div class="fact-body item-padding-override">
+                        <div class="org-card-top-row">
+                            <span class="story-card-title">National Association of the Deaf (NAD)</span>
+                            <i class="fa-solid fa-bullhorn org-icon-right"></i>
+                        </div>
+                        <p class="org-description">U.S. civil rights organization safeguarding accessibility, education, and employment.</p>
+                        <a href="#" class="accent-tag org-outbound-link">Explore NAD <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+                <!-- Org 3 -->
+                <div class="myth-card">
+                    <div class="fact-body item-padding-override">
+                        <div class="org-card-top-row">
+                            <span class="story-card-title">European Union of the Deaf</span>
+                            <i class="fa-solid fa-bullhorn org-icon-right"></i>
+                        </div>
+                        <p class="org-description">Coordinates sign-language recognition and policy work across EU member states.</p>
+                        <a href="#" class="accent-tag org-outbound-link">Read EUD briefs <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+                <!-- Org 4 -->
+                <div class="myth-card">
+                    <div class="fact-body item-padding-override">
+                        <div class="org-card-top-row">
+                            <span class="story-card-title">Deaf Refugee Advocacy</span>
+                            <i class="fa-solid fa-bullhorn org-icon-right"></i>
+                        </div>
+                        <p class="org-description">Support networks for Deaf refugees navigating asylum systems without interpreters.</p>
+                        <a href="#" class="accent-tag org-outbound-link">Get involved <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Area 7: Newsletter Stay In The Loop Section (image_d15664.png) -->
+    <section class="section-newsletter">
+        <div class="container">
+            <div class="dark-newsletter-banner">
+                <span class="banner-eyebrow">STAY IN THE LOOP</span>
+                <h2>Get the Deaf World brief in your inbox every Friday.</h2>
+                <p class="newsletter-sub-para">One email, curated by Deaf editors: the story of the week, one event worth traveling for, and one advocacy action you can take in five minutes.</p>
+                
+                <form class="newsletter-form-inline" onsubmit="event.preventDefault();">
+                    <input type="email" placeholder="you@domain.com" class="newsletter-input-field" required>
+                    <button type="submit" class="turquoise-submit-btn">Subscribe <i class="fa-solid fa-arrow-right"></i></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Area 8: Structural Footer Section (image_d156be.png) -->
+     <footer class="footer">
+        <div class="container footer-inner">
+            <p>© 2026 Hands & Voices. All rights reserved.</p>
+            
+            <div class="footer-socials">
+                <a href="#" aria-label="Instagram" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" aria-label="X (Twitter)" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" aria-label="Facebook" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" aria-label="Pinterest" target="_blank"><i class="fa-brands fa-pinterest-p"></i></a>
+                <a href="#" aria-label="TikTok" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="#" aria-label="WhatsApp Channel" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#" aria-label="You Tube" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

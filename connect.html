@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect - Hands & Voices</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="connect.css"> </head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-initials">H&V</span>
+                <div class="logo-text">
+                    <span class="brand-name">Hands & Voices</span>
+                    <span class="tagline">Deaf culture, told well</span>
+                </div>
+            </a>
+            
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="deaf-culture-101.html">Deaf Culture 101</a></li>
+                    <li><a href="deaf-world.html">Deaf World</a></li>
+                    <li><a href="learn-sign.html">Learn Sign</a></li>
+                    <li><a href="connect.html" class="active">Connect</a></li>
+                </ul>
+            </nav>
+
+            <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+        </div>
+        
+        <!-- Mobile Navigation Dropdown -->
+        <nav class="mobile-nav" id="mobile-nav">
+            <ul>
+                <li><a href="/" class="active">Home</a></li>
+                <li><a href="deaf-culture-101.html">Deaf Culture 101</a></li>
+                <li><a href="deaf-world.html">Deaf World</a></li>
+                <li><a href="learn-sign.html">Learn Sign</a></li>
+                <li><a href="connect.html">Connect</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- SECTION 1: HERO (ABOUT ME) -->
+    <section class="connect-hero-section">
+        <div class="main-container connect-hero-grid">
+            <div class="hero-text-content">
+                <span class="section-eyebrow-teal">ABOUT ME</span>
+                <h1 class="hero-title">Hi, I’m Jeridah — writer, signer, and reluctant explainer.</h1>
+                <p class="hero-body-p">
+                    I grew up in a mixed hearing–Deaf family, learned to sign before I learned to read, and started Hands & Voices because most of what the internet said about Deaf people was written by hearing people. I wanted a place with room for both.
+                </p>
+                <p class="hero-body-p text-muted">
+                    You’ll find me in the comments, the newsletter, and — every other Friday — behind the camera for our short video letters.
+                </p>
+            </div>
+            <div class="hero-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1000&q=80" alt="Amara smiling and waving hello" class="hero-avatar-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: MISSION -->
+    <section class="mission-section">
+        <div class="main-container">
+            <span class="section-eyebrow-teal">MISSION</span>
+            <h2 class="mission-heading">To tell Deaf stories in the language they deserve — and invite hearing readers in without dumbing anything down.</h2>
+            
+            <div class="mission-cards-grid">
+                <div class="mission-card">
+                    <h3>Language-first</h3>
+                    <p>Sign languages are full languages. We write about them that way — with grammar, culture, and history intact.</p>
+                </div>
+                <div class="mission-card">
+                    <h3>Access as design</h3>
+                    <p>Captions, transcripts, alt text, plain language, and high-contrast type are the baseline — not an add-on.</p>
+                </div>
+                <div class="mission-card">
+                    <h3>Community-led</h3>
+                    <p>Deaf writers, Deaf editors, Deaf sensitivity readers. Hearing allies welcomed, never centered.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: WELCOME VIDEO -->
+    <section class="welcome-video-section">
+        <div class="main-container video-layout-grid">
+            <div class="video-info-side">
+                <span class="section-eyebrow-teal">WELCOME VIDEO</span>
+                <h2 class="video-heading">A 90–second hello, in sign and voice.</h2>
+                <p class="video-subtext">Signed by me, voiced by my brother Kai, captioned in English and Spanish. Turn the sound on — or off. Both work.</p>
+                <ul class="video-bullets-list">
+                    <li><span class="bullet-dot">•</span> Closed captions (EN, ES)</li>
+                    <li><span class="bullet-dot">•</span> Full written transcript below the player</li>
+                    <li><span class="bullet-dot">•</span> ASL as the primary language</li>
+                </ul>
+            </div>
+            <div class="video-player-frame">
+                <div class="video-canvas">
+                    <button class="video-play-trigger"><i class="fas fa-play"></i></button>
+                    
+                    <div class="video-player-controls-row">
+                        <button class="player-pill-btn">CC</button>
+                        <button class="player-pill-btn">Transcript</button>
+                        <button class="player-pill-btn">ASL</button>
+                    </div>
+                </div>
+                <div class="video-player-footer">
+                    A welcome from Amara — 1:32. Captions and full transcript included.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: CONTACT FORM (SAY HELLO) -->
+    <section class="contact-form-section">
+        <div class="main-container contact-layout-grid">
+            <div class="contact-info-side">
+                <span class="section-eyebrow-teal">SAY HELLO</span>
+                <h2 class="contact-heading">Contact</h2>
+                <p class="contact-intro-text">Story pitches, corrections, cultural feedback, or just a wave. Every message is read by a human.</p>
+                
+                <div class="accessibility-notice-card">
+                    <h4>Accessibility note</h4>
+                    <p>This form works with screen readers and keyboard only — every field is labelled, errors read aloud, and no CAPTCHA image is used.</p>
+                </div>
+            </div>
+            
+            <div class="contact-form-wrapper">
+                <form class="actual-input-form">
+                    <div class="form-row-split">
+                        <div class="input-block">
+                            <label for="input-name">Name</label>
+                            <input type="text" id="input-name">
+                        </div>
+                        <div class="input-block">
+                            <label for="input-email">Email</label>
+                            <input type="email" id="input-email">
+                        </div>
+                    </div>
+                    <div class="input-block">
+                        <label for="input-subject">Subject</label>
+                        <input type="text" id="input-subject">
+                    </div>
+                    <div class="input-block">
+                        <label for="input-message">Message</label>
+                        <textarea id="input-message" rows="6"></textarea>
+                        <span class="input-hint-text">Up to 1,000 characters. Plain language is welcome.</span>
+                <div class="form-submit-footer">
+                    <span class="reply-guarantee-text">We reply within 3 business days.</span>
+                    <button type="submit" class="form-submit-button">SEND MESSAGE</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: FAQ ACCORDION -->
+    <section class="faq-accordion-section">
+        <div class="main-container small-width-container">
+            <span class="section-eyebrow-teal">FAQ</span>
+            <h2 class="faq-main-heading">Frequently Asked Questions</h2>
+            
+            <div class="accordion-list">
+                <div class="accordion-item">
+                    <button class="accordion-trigger">
+                        <span>What is Hands & Voices?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content-panel">
+                        <p>An interactive open educational platform celebrating Deaf culture and developing digital sign language tools.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-trigger">
+                        <span>Is the sign language course free?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content-panel">
+                        <p>Yes! All basic conversational fingerspelling materials are entirely open-source and free.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-trigger">
+                        <span>How can I contribute?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content-panel">
+                        <p>By dropping links to active local cultural chapters or verified directory nodes through our form map.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-content-row">
+            <p class="copyright-text">&copy; 2026 Hands & Voices. All rights reserved.</p>
+            <div class="social-links-wrapper">
+                <a href="#" class="social-circle-link"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-circle-link"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-circle-link"><i class="fab fa-x-twitter"></i></a>
+                <a href="#" class="social-circle-link"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="#" class="social-circle-link"><i class="fa-brands fa-pinterest-p"></i></a>
+                <a href="#" class="social-circle-link"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#" class="social-circle-link"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+            <a href="#" class="privacy-link">Privacy Policy</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    
+</body>
+</html>

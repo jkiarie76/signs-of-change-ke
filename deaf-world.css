@@ -1,0 +1,810 @@
+/* ==========================================================================
+   1. GLOBAL SYSTEM SETUP & VARIABLE ENGINE
+   ========================================================================== */
+:root {
+    --text-main: #111827;
+    --text-muted: black;
+    --bg-main: #f5d393;
+    --bg-alt: #f3f4f6;
+    --accent: #0f172a;
+    --border: #e5e7eb;
+    --font-family: 'Inter', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-primary);
+    font-family: var(--font-family);
+    color: var(--color-dark);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* Common Section Typography Scaffolding */
+.section-header {
+    margin-bottom: 0.5rem;
+    background-color: #fdfbf7;
+}
+
+.eyebrow, .eyebrow-accent {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color:turquoise;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+.section-intro-text {
+    font-size: 1.05rem;
+    color: var(--color-muted);
+    margin-bottom: 2.5rem;
+    max-width: 700px;
+}
+
+/* ==========================================================================
+   2. SITE HEADER & NAVIGATION COMPONENT
+   ========================================================================== */
+/* --- Navigation --- */
+.header {
+    border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+    padding: 1rem 0;
+    background-color:rgba(253, 251, 247, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: backround-color 0.3s ease, backdrop-filter 0.3s ease;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo-initials {
+    background: var(--accent);
+    color: white;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    border-radius: 50%;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.tagline {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    /* letter-spacing: 0.05em; */
+    /* margin-top: 0.1rem; */
+}
+
+.desktop-nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.desktop-nav a {
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: color 0.2s;
+    text-transform:uppercase;
+
+}
+/* on hover display border left to right teal color */
+/* Base styling targeting the desktop navigation links */
+.desktop-nav ul li a {
+    font-weight: 500;
+    font-size: 0.8rem;
+    color: var(--navy-dark);
+    text-transform: uppercase;
+    font-weight: bolder;
+    letter-spacing: 0.02em;
+    padding-bottom: 0.25rem;
+    position: relative; /* CRITICAL: Acts as an anchor for the absolute fake underline */
+    transition: color 0.3s ease;
+}
+
+/* Creating the fake underline using ::after */
+.desktop-nav ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;                 /* The thickness of your underline */
+    background-color: turquoise;   /* Your Turquoise Teal color */
+    
+    /* Animation magic setup */
+    transform: scaleX(0);        /* Start shrunken down to 0 width */
+    transform-origin: bottom left; /* Forces the scaling expansion to start from the LEFT */
+    transition: transform 0.4s ease; /* Controls the speed (0.4s) and smoothness (ease) */
+}
+
+/* Hover state: change text color and grow the line to full size */
+.desktop-nav ul li a:hover {
+    color: turquoise;
+}
+
+.desktop-nav ul li a:hover::after {
+    transform: scaleX(1);        /* Scales the line horizontally to 100% width */
+}
+
+/* Active state: keeps the line permanently visible on the current page link */
+.desktop-nav ul li a.active {
+    color: turquoise;
+}
+
+.desktop-nav ul li a.active::after {
+    transform: scaleX(1);        /* Keeps it full width for the active page */
+}
+.desktop-nav a:hover{
+    /* color:#00a3a6; */
+    border-bottom-color:#00a3a6 ;
+}
+.desktop-nav a:hover, .desktop-nav a.active {
+    color: #00a3a6;;
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.mobile-nav {
+    display: none;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--border);
+}
+
+.mobile-nav.open {
+    display: block;
+}
+
+.mobile-nav ul {
+    list-style: none;
+}
+
+.mobile-nav li {
+    padding: 0.5rem 0;
+}
+
+/* ==========================================================================
+   3. DEAF WORLD HERO SPLIT COMPONENT (image_d14f1f.jpg)
+   ========================================================================== */
+.section-hero {
+    padding: 5rem 0 4rem 0;
+    background-color: #f8f5ee;
+}
+
+.hero-split-layout {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.hero-text-side {
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-display-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--color-dark);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+}
+
+.hero-paragraph {
+    font-size: 1.15rem;
+    color: var(--color-muted);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+}
+
+/* Anchor Selection Horizontal Row */
+.hero-anchors-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.chip-btn {
+    background-color: #ffffff;
+    color: var(--color-dark);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.65rem 1.25rem;
+    border-radius: 50px;
+    border: 1px solid #e5e7eb;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.chip-btn i {
+    color: var(--color-muted);
+    font-size: 0.85rem;
+}
+
+.chip-btn:hover {
+    border-color: var(--color-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.04);
+}
+
+.rounded-hero-img {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+    border-radius: 24px;
+    object-position: 10% center;
+}
+
+/* ==========================================================================
+   4. LAYOUT SYSTEM: REUSABLE DUAL-COLUMN GRID & CARDS
+   ========================================================================== */
+.myths-layout-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    background-color: #f8f5ee;
+}
+
+.myth-card {
+    background-color: #ffffff;
+    border: 1px solid #d2d3d6;
+    border-radius: 16px;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.myth-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(12, 26, 48, 0.03);
+    border-color: turquoise;
+}
+
+/* ==========================================================================
+   5. REPORTING FROM GLOBAL STORIES COMPONENT (image_d1525e.png)
+   ========================================================================== */
+.section-global-stories {
+    padding: 4rem 0;
+    background-color: #fdfbf7;
+}
+
+.section-global-stories h3 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--color-dark);
+}
+.myths-layout-grid{
+    background-color: #fdfbf7;
+}
+.myth-head {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+.myth-head .card-meta-tag i{
+    color: red;
+}
+.card-meta-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color:turquoise;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.story-card-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    line-height: 1.3;
+}
+
+.fact-body p {
+    color: var(--color-muted);
+    font-size: 0.98rem;
+    line-height: 1.5;
+}
+
+.card-footer-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+}
+
+.read-time-tag {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    font-weight: 500;
+}
+
+.accent-tag {
+    color: var(--color-turquoise);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+}
+
+.accent-tag:hover {
+    color: var(--color-teal);
+}
+
+/* ==========================================================================
+   7. EVENTS BOARD SYSTEM MODULE (image_d155ea.png)
+   ========================================================================== */
+.section-events-board {
+    padding: 4rem 0;
+}
+
+.section-events-board h3 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--color-dark);
+}
+
+.events-board-wrapper {
+    background-color: #ffffff;
+    border: 1px solid #c2c4c6;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.event-board-row {
+    display: flex;
+    align-items: center;
+    padding: 1.75rem 2.5rem;
+    border-bottom: 1px solid #e5e7eb;
+    gap: 3rem;
+}
+
+.event-date-stack {
+    display: flex;
+    flex-direction: column;
+    min-width: 80px;
+}
+
+.ev-month {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color:#0369a1;
+    line-height: 1.1;
+}
+
+.ev-year {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color:#0369a1;
+    letter-spacing: 0.05em;
+}
+
+.event-main-details {
+    flex: 1;
+}
+
+.event-main-details h6 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    margin-bottom: 0.35rem;
+}
+
+.event-meta-subline {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.88rem;
+    color: var(--color-muted);
+}
+
+.event-meta-subline span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.event-actions-pill-box {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.event-details-link {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-dark);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.event-details-link:hover {
+    color: var(--color-turquoise);
+}
+
+/* Unified Status Badges */
+.badge-status-pill {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 0.35rem 0.85rem;
+    border-radius: 50px;
+    display: inline-block;
+}
+
+.badge-status-pill.in-person { background-color: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
+.badge-status-pill.online { background-color: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
+.badge-status-pill.community { background-color: #fdf2f8; color: #be185d; border: 1px solid #fbcfe8; }
+.badge-status-pill.hybrid { background-color: #faf5ff; color: #6b21a8; border: 1px solid #e9d5ff; }
+
+/* Sub-Row Inner Suggestion Action Footer */
+.inner-board-footer {
+    background-color: #fdfbf7;
+    padding: 1.75rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    border-top: 1px dashed #e5e7eb;
+}
+
+.inner-footer-msg {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.inner-footer-msg strong {
+    font-size: 1rem;
+    color: var(--color-dark);
+}
+
+.inner-footer-msg span {
+    font-size: 0.9rem;
+    color: var(--color-muted);
+}
+
+.turquoise-action-btn {
+    background-color:rgb(24, 157, 144);
+    color:#ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.2s ease;
+    border: none;
+}
+
+.turquoise-action-btn:hover {
+    background-color:teal;
+}
+
+/* ==========================================================================
+   8. ADVOCACY MODULE (image_d15a02.png)
+   ========================================================================== */
+.section-advocacy {
+    padding: 4rem 0;
+    background-color: #fdfbf7;
+}
+
+.section-advocacy h3 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--color-dark);
+}
+
+.item-padding-override {
+    padding: 2rem !important;
+    min-height: 200px;
+}
+
+.org-card-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.org-icon-right {
+    font-size: 1.25rem;
+    color: turquoise;
+}
+
+.org-description {
+    font-size: 0.95rem;
+    color: var(--color-muted);
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+}
+
+.org-outbound-link {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: auto;
+    color: turquoise;
+}
+
+/* ==========================================================================
+   9. NEWSLETTER CONVERT BOX COMPONENT (image_d15664.png)
+   ========================================================================== */
+.section-newsletter {
+    padding: 4rem 0;
+    background-color: #fdfbf7;
+}
+
+.dark-newsletter-banner {
+    background-color:#1b1e34;
+    border-radius: 24px;
+    padding: 4rem;
+    height: 80%;
+}
+
+.banner-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: turquoise;
+    letter-spacing: 0.1em;
+}
+
+.dark-newsletter-banner h2 {
+    color: #ffffff;
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin: 0.75rem 0 1rem 0;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+}
+
+.newsletter-sub-para {
+    color: #94a3b8;
+    font-size: 1.1rem;
+    max-width: 720px;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+}
+
+.newsletter-form-inline {
+    display: flex;
+    max-width: 580px;
+    gap: 0.75rem;
+}
+
+.newsletter-input-field {
+    flex: 1;
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 50px;
+    padding: 0.95rem 1.75rem;
+    color: #ffffff;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.newsletter-input-field::placeholder {
+    color: #64748b;
+}
+
+.newsletter-input-field:focus {
+    border-color: var(--color-turquoise);
+}
+
+.turquoise-submit-btn {
+    background-color: rgb(14, 147, 134);
+    color: #ffffff;
+    border: none;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0 2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.2s ease;
+}
+
+.turquoise-submit-btn:hover {
+    background-color: var(--color-teal);
+}
+
+/* ==========================================================================
+   10. STRUCTURAL FOOTER COMPONENT (image_d156be.png)
+   ========================================================================== */
+/* --- Footer --- */
+/* --- Footer Styling --- */
+.footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 0;
+    margin-top: 4rem;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    background-color: #f4eee0; /* Seamlessly blends into your pale cream background */
+}
+
+/* Flexbox aligns the copyright text, the icons, and the privacy policy link */
+.footer-inner {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+/* Layout for the social icons row */
+.footer-socials {
+    display: flex;
+    gap: 1.5rem;              /* Balanced gap between individual icons */
+    align-items: center;
+}
+
+/* Individual Icon Styles */
+.footer-socials a {
+    width: 36px;
+    height: 36px;
+    border: 1px solid #e5e7eb;
+    border-radius: 50%; 
+    display: inline-flex;
+    align-items: center; 
+    justify-content: center;
+    color: #4b5563;
+    font-size: 0.95rem; 
+    background-color: #ffffff; 
+    transition: all 0.2s ease; 
+    text-decoration: none; 
+}
+
+/* Interactive Hover States */
+.footer-socials a:hover {
+    color: turquoise;           /* Swaps nicely to your Turquoise Teal theme accent color */
+    transform: translateY(-3px); /* Subtle lift animation on hover */
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+    .footer-inner {
+        flex-direction: column; /* Stacks components cleanly on tiny mobile layout screens */
+        text-align: center;
+    }
+}
+
+
+/* ==========================================================================
+   11. FLUID RESPONSIVE MEDIA BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .hero-split-layout {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        
+    }
+    .hero-split-layout .hero-image-side, .hero-split-layout img{
+        order: -1;
+    }
+    .rounded-hero-img {
+        height: 380px;
+    }
+    .hero-display-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .myths-layout-grid {
+        grid-template-columns: 1fr;
+    }
+    .event-board-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.25rem;
+        padding: 1.5rem;
+    }
+    .event-actions-pill-box {
+        width: 100%;
+        justify-content: space-between;
+        border-top: 1px solid #f3f4f6;
+        padding-top: 1rem;
+    }
+    .inner-board-footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+    .quote-card-display {
+        padding: 2rem;
+    }
+    .main-column-quote {
+        font-size: 1.6rem;
+    }
+    .newsletter-form-inline {
+        flex-direction: column;
+        width: 100%;
+    }
+    .turquoise-submit-btn {
+        padding: 1rem 0;
+        justify-content: center;
+    }
+}
+@media (max-width: 768px) {
+    .desktop-nav {
+        display: none;
+    }
+    .mobile-menu-btn {
+        display: block;
+    }
+    .featured-content h2 {
+        font-size: 1.5rem;
+    }
+}

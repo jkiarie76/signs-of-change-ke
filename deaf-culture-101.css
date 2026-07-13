@@ -1,0 +1,275 @@
+/* ==========================================================================
+   GLOBAL STRUCTURE & SECTION MECHANICS
+   ========================================================================== */
+:root {
+    --text-main: #111827;
+    --text-muted: black;
+    --bg-main: #fdfbf7;
+    --bg-alt: #f3f4f6;
+    --accent: #0f172a;
+    --border: #e5e7eb;
+    --font-family: 'Inter', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; text-decoration: none; }
+body { font-family: var(--font-family); color: var(--text-main); background-color: var(--bg-main); line-height: 1.6; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+a {
+    text-decoration: none;
+    color: black;
+}
+
+/* Structural Heading Shared Modules */
+.section-header { margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1.25rem; }
+.section-header .eyebrow { text-transform: uppercase; font-size: 0.75rem; font-weight: 600; color: turquoise; letter-spacing: 0.05em; display: block; margin-bottom: 0.5rem; }
+.section-header h3 { font-size: 1.75rem; font-weight: 700; color: #0f172a; margin: 0; }
+.section-intro-text { font-size: 1.1rem; color: #4b5563; max-width: 850px; margin-bottom: 2.5rem; line-height: 1.65; }
+
+/* --- 1. Header Navigation Styles --- */
+/* --- Navigation --- */
+.header {
+    border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+    padding: 1rem 0;
+    background-color:rgba(253, 251, 247, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: backround-color 0.3s ease, backdrop-filter 0.3s ease;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    text-decoration: none;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo-initials {
+    background: var(--accent);
+    color: white;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    border-radius: 50%;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+}
+
+.tagline {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    /* letter-spacing: 0.05em; */
+    /* margin-top: 0.1rem; */
+}
+
+.desktop-nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    text-decoration: none;
+}
+
+.desktop-nav a {
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: color 0.2s;
+    text-transform:uppercase;
+
+}
+/* on hover display border left to right teal color */
+/* Base styling targeting the desktop navigation links */
+.desktop-nav ul li a {
+    font-weight: 500;
+    font-size: 0.8rem;
+    color: var(--navy-dark);
+    text-transform: uppercase;
+    font-weight: bolder;
+    letter-spacing: 0.02em;
+    padding-bottom: 0.25rem;
+    position: relative; /* CRITICAL: Acts as an anchor for the absolute fake underline */
+    transition: color 0.3s ease;
+}
+
+/* Creating the fake underline using ::after */
+.desktop-nav ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;                 /* The thickness of your underline */
+    background-color: turquoise;   /* Your Turquoise Teal color */
+    
+    /* Animation magic setup */
+    transform: scaleX(0);        /* Start shrunken down to 0 width */
+    transform-origin: bottom left; /* Forces the scaling expansion to start from the LEFT */
+    transition: transform 0.4s ease; /* Controls the speed (0.4s) and smoothness (ease) */
+}
+
+/* Hover state: change text color and grow the line to full size */
+.desktop-nav ul li a:hover {
+    color: turquoise;
+}
+
+.desktop-nav ul li a:hover::after {
+    transform: scaleX(1);        /* Scales the line horizontally to 100% width */
+}
+
+/* Active state: keeps the line permanently visible on the current page link */
+.desktop-nav ul li a.active {
+    color: turquoise;
+}
+
+.desktop-nav ul li a.active::after {
+    transform: scaleX(1);        /* Keeps it full width for the active page */
+}
+.desktop-nav a:hover{
+    /* color:#00a3a6; */
+    border-bottom-color:#00a3a6 ;
+}
+.desktop-nav a:hover, .desktop-nav a.active {
+    color: #00a3a6;;
+}
+
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.mobile-nav {
+    display: none;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--border);
+}
+
+.mobile-nav.open {
+    display: block;
+}
+
+.mobile-nav ul {
+    list-style: none;
+}
+
+.mobile-nav li {
+    padding: 0.5rem 0;
+}
+.mobile-nav li a{
+    text-decoration: none;
+    color: black;
+}
+
+/* --- 2. Section Hero Styles --- */
+.section-hero { padding: 4rem 0; background-color: #f6f2eb; }
+.hero-split-layout { display: flex; align-items: center; gap: 4rem; }
+.hero-text-side { flex: 1.2; }
+.hero-image-side { flex: 1; }
+.eyebrow-accent { font-size: 0.8rem; font-weight: 700; color: turquoise; letter-spacing: 0.08em; display: block; margin-bottom: 1rem; }
+.hero-display-title { font-size: 3.2rem; font-weight: 800; color: #0c1a30; line-height: 1.15; margin-bottom: 1.5rem; }
+.hero-paragraph { font-size: 1.15rem; color: #4b5563; line-height: 1.6; margin-bottom: 2rem; }
+.hero-anchors-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.chip-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.2rem; background: #ffffff; border: 1px solid #e5e7eb; border-radius: 50px; color: #1f2937; font-size: 0.9rem; font-weight: 500; text-decoration: none; transition: all 0.2s ease; }
+.chip-btn i { color: #6b7280; font-size: 0.85rem; }
+.chip-btn:hover { border-color: #008080; color: #008080; background-color: #f0fdfa; }
+.rounded-hero-img { width: 100%; height: 440px; object-fit: cover; border-radius: 24px; }
+
+/* --- 3. Section Etiquette Styles --- */
+.section-etiquette { padding: 4rem 0; background-color: #ffffff; }
+.binary-panel-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+.panel-box { border-radius: 16px; padding: 2rem; }
+.do-box { background-color: #e6f3f3; border: 1px solid #bce2e2; }
+.dont-box { background-color: var(--bg-alt); border: 1px solid #e5e7eb; }
+.panel-box h5 { font-size: 1.4rem; font-weight: 700; margin-bottom: 1.5rem; }
+.do-box h5 { color: #004d4d; }
+.dont-box h5 { color: #111827; }
+.panel-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+.panel-list li { display: flex; align-items: flex-start; gap: 0.85rem; font-size: 0.98rem; line-height: 1.5; color: #1f2937; }
+.panel-list li i { font-size: 1.15rem; margin-top: 2px; flex-shrink: 0; }
+.do-box i { color: #008080; }
+.dont-box i { color: #0c1a30; }
+
+/* --- 4. Section History Styles --- */
+.section-history { padding: 4rem 0; background-color: #f6f2eb;}
+.timeline-container { position: relative; padding-left: 2.5rem; display: flex; flex-direction: column; gap: 2rem; }
+.timeline-line { position: absolute; left: 7px; top: 10px; bottom: 10px; width: 2px; background-color: #bce2e2; }
+.timeline-node { position: relative; }
+.node-marker { position: absolute; left: -2.5rem; top: 6px; width: 16px; height: 16px; border-radius: 50%; background-color: #008080; border: 3px solid var(--bg-main); z-index: 2; }
+.node-content { max-width: 750px; }
+.node-year { font-size: 0.75rem; font-weight: 700; color: #008080; letter-spacing: 0.05em; display: block; margin-bottom: 0.25rem; }
+.node-content h6 { font-size: 1.1rem; font-weight: 700; color: #111827; margin-bottom: 0.35rem; }
+.node-content p { font-size: 0.95rem; color: #4b5563; line-height: 1.5; }
+
+/* --- 5. Section Myths Styles --- */
+.section-myths { padding: 4rem 0; background-color: white; }
+.myths-layout-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+.myth-card { background: var(--bg-alt); border: 1px solid #e5e7eb; border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; }
+.myth-head { padding: 1.25rem 1.5rem; background-color: var(--bg-main); border-bottom: 1px solid #e5e7eb; font-weight: 600; font-size: 0.95rem; color: #111827; display: flex; flex-direction: column; gap: 0.25rem; }
+.fact-body { padding: 1.5rem; font-size: 0.95rem; color: #4b5563; line-height: 1.5; display: flex; flex-direction: column; gap: 0.5rem; }
+.card-meta-tag { font-size: 0.7rem; font-weight: 700; color: #6b7280; letter-spacing: 0.05em; }
+.accent-tag { color: #008080; }
+
+/* --- 6. Section Keep Going Styles --- */
+.section-keep-going { padding: 3rem 0; background-color: #f6f2eb; }
+.dark-cta-banner { background-color: #0c1a30; border-radius: 20px; padding: 3rem; display: flex; justify-content: space-between; align-items: center; gap: 3rem; }
+.cta-message { max-width: 600px; }
+.banner-eyebrow { font-size: 0.75rem; font-weight: 700; color: #00a3a3; letter-spacing: 0.1em; display: block; margin-bottom: 0.75rem; }
+.dark-cta-banner h2 { color: #ffffff; font-size: 1.85rem; font-weight: 700; line-height: 1.3; }
+.banner-action-btn { padding: 1rem 1.75rem; background-color: teal; color: #ffffff; text-decoration: none; font-weight: 600; border-radius: 50px; white-space: nowrap; display: inline-flex; align-items: center; gap: 0.5rem; transition: background-color 0.2s ease; }
+.banner-action-btn:hover { background-color: turquoise; transition: 2s ease; }
+
+/* --- 7. Section Footer Styles --- */
+.section-footer { border-top: 1px solid var(--border); padding: 2.5rem 0; margin-top: 4rem; color: var(--text-muted); font-size: 0.875rem; background-color: #faf1df; }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+.footer-socials { display: flex; gap: 0.75rem; }
+.footer-socials a { width: 36px; height: 36px; border: 1px solid #e5e7eb; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #4b5563; font-size: 0.95rem; background-color: #ffffff; transition: all 0.2s ease; text-decoration: none; }
+.footer-socials a:hover { border-color: turquoise; color: turquoise; transform: translateY(-2px); }
+.footer-links a { color: inherit; text-decoration: none; }
+.footer-links a:hover { color: #008080; }
+
+/* --- Responsive Media Queries --- */
+@media (max-width: 968px) {
+    .hero-split-layout { flex-direction: column-reverse; text-align: center; gap: 2rem; }
+    .hero-display-title { font-size: 2.2rem; }
+    .hero-anchors-row { justify-content: center; }
+    .rounded-hero-img { height: 300px; }
+    .binary-panel-row, .myths-layout-grid { grid-template-columns: 1fr; }
+    .dark-cta-banner { flex-direction: column; text-align: center; padding: 2.5rem; gap: 1.5rem; }
+    .footer-inner { flex-direction: column; text-align: center; }
+ 
+}  
+ @media (max-width: 768px) {
+    .desktop-nav {
+        display: none;
+    }
+    .mobile-menu-btn {
+        display: block;
+    }
+    .featured-content h2 {
+        font-size: 1.5rem;
+    }
+}
