@@ -1,0 +1,254 @@
+/* ==========================================================================
+   BREADCRUMB TRAIL NAVIGATION
+   ========================================================================== */
+.breadcrumb-nav {
+    font-size: 0.85rem;
+    color: #64748b; /* Muted grey for dividers */
+    margin-bottom: 24px; /* Creates breathing room above the featured article */
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.breadcrumb-nav a {
+    color: #1b1e34; /* Matches your rich dark theme base */
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.breadcrumb-nav a:hover {
+    color: #ff0000; /* Subtle hover color change matching your brand highlights */
+}
+
+.breadcrumb-nav .current-page {
+    color: #94a3b8; /* Lighter grey for active step to indicate you are currently here */
+    font-weight: 400;
+}
+/* ==========================================================================
+   GLOBAL VIEWPORT & RESET BOUNDARIES
+   ========================================================================== */
+.stories-viewport {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* ==========================================================================
+   TIER 1: FEATURED HERO COMPONENT (DESKTOP SPLIT DISPLAY)
+   ========================================================================== */
+.featured-story-hero {
+    display: flex;
+    background-color: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05);
+    margin-bottom: 48px;
+    min-height: 420px;
+}
+
+.hero-image-pane {
+    position: relative;
+    flex: 1.1; /* Allocates slightly more horizontal space for the image */
+    min-height: 350px;
+}
+
+.hero-image-pane img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-content-pane {
+    flex: 1;
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #f8fafc; /* Subtle offset background to look premium */
+}
+
+/* Metadata Typography formatting */
+.story-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-bottom: 16px;
+}
+
+.story-badge {
+    background-color: #e2e8f0;
+    color: #1b1e34;
+    padding: 4px 10px;
+    font-weight: 700;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 4px;
+}
+
+.hero-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #ff0000; /* Distinct highlight label */
+    color: #ffffff;
+}
+
+.hero-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #1b1e34;
+    line-height: 1.25;
+    margin: 0 0 16px 0;
+}
+
+.hero-excerpt {
+    font-size: 1.05rem;
+    color: #475569;
+    line-height: 1.6;
+    margin: 0 0 28px 0;
+}
+
+.story-read-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #1b1e34;
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.story-read-link:hover {
+    color: #ff0000;
+}
+.story-read-link:hover i {
+    transform: translateX(4px);
+}
+
+/* ==========================================================================
+   TIER 2: SECONDARY REPEAT GRID CONFIGURATION
+   ========================================================================== */
+.stories-feed-grid {
+    display: grid;
+    /* Two-column layout on desktop looks premium and readable for text cards */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+}
+
+.story-editorial-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.story-editorial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px -8px rgba(27, 30, 52, 0.15);
+}
+
+.story-card-image {
+    width: 100%;
+    aspect-ratio: 16 / 10; /* Slightly taller aspect ratio than standard video dimensions */
+    overflow: hidden;
+}
+
+.story-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.story-editorial-card:hover .story-card-image img {
+    transform: scale(1.03);
+}
+
+.story-card-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.story-card-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #1b1e34;
+    margin: 0 0 10px 0;
+    line-height: 1.4;
+}
+
+.story-card-excerpt {
+    font-size: 0.95rem;
+    color: #475569;
+    line-height: 1.55;
+    margin: 0 0 20px 0;
+}
+
+.story-text-link {
+    margin-top: auto;
+    color: #1b1e34;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.9rem;
+    border-bottom: 2px solid #e2e8f0;
+    width: fit-content;
+    padding-bottom: 2px;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.story-editorial-card:hover .story-text-link {
+    color: #ff0000;
+    border-color: #ff0000;
+}
+
+/* ==========================================================================
+   MOBILE & TABLET BREAKPOINT OPTIMIZATION
+   ========================================================================== */
+@media (max-width: 900px) {
+    .featured-story-hero {
+        flex-direction: column; /* Collapses split view to single-column display */
+    }
+    
+    .hero-content-pane {
+        padding: 32px 24px;
+    }
+
+    .hero-title {
+        font-size: 1.75rem;
+    }
+}
+
+@media (max-width: 650px) {
+    .stories-viewport {
+        padding: 16px 12px;
+    }
+
+    .stories-feed-grid {
+        grid-template-columns: 1fr; /* Drops feed down to clean single-stack cards */
+        gap: 20px;
+    }
+
+    .hero-image-pane {
+        min-height: 240px;
+    }
+
+    .story-card-body {
+        padding: 18px;
+    }
+
+    .story-card-title {
+        font-size: 1.2rem;
+    }
+}

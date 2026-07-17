@@ -1,0 +1,203 @@
+/* ==========================================================================
+   GLOBAL VIEWPORT & BREADCRUMBS
+   ========================================================================== */
+.etiquette-viewport {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.breadcrumb-nav {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.breadcrumb-nav a {
+    color: #1b1e34;
+    text-decoration: none;
+    font-weight: 500;
+}
+.breadcrumb-nav a:hover {
+    color: #ff0000;
+}
+.breadcrumb-nav .current-page {
+    color: #94a3b8;
+}
+
+/* Header Context Typography */
+.etiquette-page-header h1 {
+    font-size: 2.2rem;
+    color: #1b1e34;
+    margin: 0 0 8px 0;
+}
+.etiquette-page-header p {
+    color: #475569;
+    font-size: 1.05rem;
+    max-width: 650px;
+    margin: 0 0 36px 0;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   HORIZONTAL CAPSULE FILTER DOCK
+   ========================================================================== */
+.etiquette-filter-dock {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.filter-chip {
+    background-color: #f1f5f9;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+    padding: 8px 18px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.filter-chip:hover {
+    background-color: #e2e8f0;
+    color: #1b1e34;
+}
+.filter-chip.active {
+    background-color: #1b1e34;
+    color: #ffffff;
+    border-color: #1b1e34;
+}
+
+/* ==========================================================================
+   ETIQUETTE CARD ARCHITECTURE FRAMEWORK
+   ========================================================================== */
+.etiquette-grid-matrix {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 30px;
+}
+
+.etiquette-card {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 10px rgba(15, 23, 42, 0.02);
+    position: relative;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+/* Desktop Hover Interaction Transitions */
+@media (hover: hover) {
+    .etiquette-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 25px -5px rgba(27, 30, 52, 0.06);
+    }
+}
+
+.card-behavior-banner {
+    padding: 20px 24px 0 24px;
+    display: flex;
+    align-items: center;
+}
+
+.etiquette-card-body {
+    padding: 16px 24px 24px 24px;
+    flex-grow: 1;
+}
+
+/* Typography Assignments */
+.etiquette-rule-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1b1e34;
+    margin: 0 0 10px 0;
+    line-height: 1.4;
+}
+
+.etiquette-rule-explanation {
+    font-size: 0.92rem;
+    color: #475569;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ==========================================================================
+   CONTEXTUAL MODIFIER RULES (DO vs DON'T CONFIGURATION)
+   ========================================================================== */
+
+/* DO Variant: Deep Forest Green Accent Borders */
+.etiquette-card.do-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background-color: #10b981;
+}
+.behavior-badge.badge-do {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+/* DON'T Variant: Warning Crimson Crimson Accent Borders */
+.etiquette-card.dont-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background-color: #ef4444;
+}
+.behavior-badge.badge-dont {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+/* Universal Base Badge Geometry */
+.behavior-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 4px 12px;
+    border-radius: 6px;
+}
+
+/* ==========================================================================
+   RESPONSIVE LAYOUT DEGRADATIONS
+   ========================================================================== */
+@media (max-width: 768px) {
+    .etiquette-grid-matrix {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .etiquette-viewport {
+        padding: 24px 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .etiquette-page-header h1 {
+        font-size: 1.75rem;
+    }
+    .card-behavior-banner {
+        padding: 16px 18px 0 18px;
+    }
+    .etiquette-card-body {
+        padding: 12px 18px 18px 18px;
+    }
+}

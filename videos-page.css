@@ -1,0 +1,376 @@
+/* ==========================================================================
+   VIDEO DIRECTORY CORE LAYOUT
+   ========================================================================== */
+.video-page-wrapper {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 24px;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Breadcrumbs */
+.breadcrumb-nav {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 12px;
+}
+.breadcrumb-nav a {
+    color: #1b1e34;
+    text-decoration: none;
+}
+.breadcrumb-nav .current-page {
+    color: #888;
+}
+
+/* Typography Header */
+.video-page-header h1 {
+    font-size: 2.25rem;
+    color: #1b1e34;
+    margin: 0 0 8px 0;
+}
+.video-page-header p {
+    color: #555;
+    font-size: 1.05rem;
+    max-width: 700px;
+    margin: 0 0 32px 0;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   SEARCH & CONTROL DOCK BAR
+   ========================================================================== */
+.control-dock {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 40px;
+    background-color: #f8f9fa;
+    padding: 16px 24px;
+    border-radius: 12px;
+    border: 1px solid #eef0f2;
+}
+
+.search-box-wrapper {
+    position: relative;
+    flex: 1;
+    max-width: 500px;
+}
+.search-box-wrapper input {
+    width: 100%;
+    padding: 12px 16px 12px 42px;
+    border: 1px solid #dcdfe4;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+.search-box-wrapper input:focus {
+    border-color: #1b1e34;
+}
+.search-box-wrapper .search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8c939d;
+}
+
+.filters-wrapper {
+    display: flex;
+    gap: 12px;
+}
+.select-custom select {
+    padding: 12px 20px;
+    border: 1px solid #dcdfe4;
+    border-radius: 8px;
+    background-color: #ffffff;
+    font-size: 0.95rem;
+    color: #1b1e34;
+    cursor: pointer;
+    outline: none;
+}
+/* ==========================================================================
+   VIDEO GRID CONTAINER (MEDIUM FOOTPRINT MATRIX)
+   ========================================================================== */
+.video-grid-matrix {
+    display: grid;
+    /* Inherent responsiveness: wraps columns dynamically down to 290px */
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 24px;
+    padding: 20px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+   THE VIDEO CARD GRAPHIC FRAMEWORK
+   ========================================================================== */
+.video-dir-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+                border-color 0.25s ease;
+    height: 100%;
+}
+
+/* Card Lift & Highlight on Hover (Desktop Only) */
+@media (hover: hover) {
+    .video-dir-card:hover {
+        transform: translateY(-5px);
+        border-color: #cbd5e1;
+        box-shadow: 0 20px 25px -5px rgba(27, 30, 52, 0.1), 0 10px 10px -5px rgba(27, 30, 52, 0.04);
+    }
+}
+
+/* ==========================================================================
+   IMAGE AREA & PLAY BUTTON OVERLAY
+   ========================================================================== */
+.card-thumbnail-zone {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #0f172a;
+    overflow: hidden;
+}
+
+.card-thumbnail-zone img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Translucent Dark Mask Layer */
+.card-thumbnail-zone::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(15, 23, 42, 0.4);
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 0.25s ease;
+}
+
+/* Play Button Centerpiece */
+.card-thumbnail-zone::after {
+    content: '\25B6';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    width: 54px;
+    height: 54px;
+    background-color: rgba(255, 255, 255, 0.95);
+    color: #1b1e34;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 4px;
+    border-radius: 50%;
+    z-index: 2;
+    opacity: 0;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                opacity 0.25s ease;
+}
+
+/* Desktop Hover Triggers */
+@media (hover: hover) {
+    .video-dir-card:hover .card-thumbnail-zone img {
+        transform: scale(1.04);
+        filter: brightness(0.9);
+    }
+    .video-dir-card:hover .card-thumbnail-zone::before {
+        opacity: 1;
+    }
+    .video-dir-card:hover .card-thumbnail-zone::after {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* YouTube Style Duration Badge */
+.duration-badge {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background-color: rgba(15, 23, 42, 0.9);
+    color: #f8fafc;
+    padding: 2px 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 4px;
+    z-index: 3;
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   TEXT CONTENT & TYPE HIERARCHY
+   ========================================================================== */
+.card-body-zone {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-topic-tag {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #64748b;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1b1e34;
+    margin: 0 0 8px 0;
+    line-height: 1.4;
+}
+
+.card-excerpt {
+    font-size: 0.88rem;
+    color: #475569;
+    line-height: 1.5;
+    margin: 0 0 16px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-meta {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* "WATCH VIDEO" ACTION CTA BUTTON */
+.card-body-zone::after {
+    content: 'Watch Video';
+    margin-top: auto;
+    width: 100%;
+    background-color: #1b1e34;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 6px;
+    letter-spacing: 0.3px;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease;
+}
+
+@media (hover: hover) {
+    .video-dir-card:hover .card-body-zone::after {
+        background-color: #ff0000;
+    }
+}
+
+/* ==========================================================================
+   EMPTY STATE NOTIFICATION
+   ========================================================================== */
+.empty-state-notice {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 48px 24px;
+    background-color: #f8fafc;
+    border: 2px dashed #e2e8f0;
+    border-radius: 12px;
+    max-width: 500px;
+    margin: 30px auto;
+}
+
+.empty-icon {
+    font-size: 2.5rem;
+    color: #94a3b8;
+    margin-bottom: 12px;
+}
+
+/* ==========================================================================
+   DEDICATED MOBILE & SMARTPHONE RESPONSIVE BREAKPOINT
+   ========================================================================== */
+@media (max-width: 480px) {
+    .video-grid-matrix {
+        /* Force a clean single column layout to avoid scaling artifacts */
+        grid-template-columns: 1fr;
+        /* Tighten gaps and grid margins for small horizontal screens */
+        gap: 16px;
+        padding: 12px 4px;
+    }
+
+    .video-dir-card {
+        border-radius: 8px; /* Slightly tighter corners to optimize grid space */
+    }
+
+    .card-body-zone {
+        padding: 14px; /* Compress inner breathing room to keep elements compact */
+    }
+
+    .card-title {
+        font-size: 1.02rem; /* Drop size slightly so longer text scales cleanly */
+        margin-bottom: 6px;
+    }
+
+    .card-excerpt {
+        font-size: 0.84rem;
+        margin-bottom: 12px;
+        -webkit-line-clamp: 2; /* Maintains strict fallback cut-off */
+    }
+
+    .card-meta {
+        margin-bottom: 14px;
+    }
+
+    .card-body-zone::after {
+        padding: 11px 0; /* Ensures tap target area remains thick and clickable */
+        font-size: 0.85rem;
+    }
+    
+    /* Mobile Touch Behavior Adjustment */
+    /* Since mobile devices don't have hover, we keep the thumbnail clear, 
+       but make the bottom CTA button visually distinct by default */
+    .card-body-zone::after {
+        background-color: #ff0000; /* Defaults to YouTube red directly on mobile */
+    }
+}
+/* ==========================================================================
+   MOBILE MEDIA DRIVEN GUARDRAILS
+   ========================================================================== */
+@media (max-width: 768px) {
+    .control-dock {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 16px;
+    }
+    .filters-wrapper {
+        width: 100%;
+    }
+    .select-custom {
+        flex: 1;
+    }
+    .select-custom select {
+        width: 100%;
+    }
+    .video-grid-matrix {
+        grid-template-columns: 1fr; /* Single column stack on small viewport screens */
+        gap: 20px;
+    }
+}

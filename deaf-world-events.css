@@ -1,0 +1,270 @@
+/* ==========================================================================
+   GLOBAL VIEWPORT & BREADCRUMB HOOKS
+   ========================================================================== */
+.events-viewport {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.breadcrumb-nav {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.breadcrumb-nav a {
+    color: #1b1e34; /* Brand base deep tone */
+    text-decoration: none;
+    font-weight: 500;
+}
+.breadcrumb-nav a:hover {
+    color: #ff0000;
+}
+.breadcrumb-nav .current-page {
+    color: #94a3b8;
+}
+
+/* Header Typography */
+.events-page-header h1 {
+    font-size: 2.2rem;
+    color: #1b1e34;
+    margin: 0 0 8px 0;
+}
+.events-page-header p {
+    color: #475569;
+    font-size: 1.05rem;
+    max-width: 650px;
+    margin: 0 0 32px 0;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   FILTER TABS SWITCHER DOCK
+   ========================================================================== */
+.events-filter-dock {
+    display: flex;
+    gap: 12px;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 1px;
+    margin-bottom: 36px;
+}
+
+.filter-tab {
+    background: none;
+    border: none;
+    padding: 12px 18px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+.filter-tab:hover {
+    color: #1b1e34;
+}
+
+.filter-tab.active {
+    color: #ff0000; /* Primary accent pop */
+}
+
+/* Animated bottom border accent for the active tab */
+.filter-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: #ff0000;
+    border-radius: 3px 3px 0 0;
+}
+
+/* ==========================================================================
+   THE EVENTS GRID & MEDIUM footprints CARD
+   ========================================================================== */
+.events-grid-matrix {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 28px;
+}
+
+.event-dir-card {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Desktop Hover Lift Protection */
+@media (hover: hover) {
+    .event-dir-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 25px -5px rgba(27, 30, 52, 0.08);
+    }
+}
+
+/* Thumbnail & Absolute Date Badge Placement */
+.event-thumbnail-zone {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #0f172a;
+}
+
+.event-thumbnail-zone img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* The High-Contrast Calendar Badge Design Pattern */
+.calendar-date-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background-color: #ffffff;
+    width: 52px;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+}
+
+.badge-month {
+    display: block;
+    background-color: #1b1e34; /* Dark brand base block fill */
+    color: #ffffff;
+    font-size: 0.68rem;
+    font-weight: 800;
+    padding: 3px 0;
+    letter-spacing: 0.5px;
+}
+
+.badge-day {
+    display: block;
+    color: #1b1e34;
+    font-size: 1.3rem;
+    font-weight: 800;
+    padding: 4px 0 6px 0;
+    line-height: 1;
+}
+
+/* ==========================================================================
+   METADATA CARD BODY WORK
+   ========================================================================== */
+.event-body-zone {
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.event-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #64748b;
+    margin-bottom: 12px;
+}
+
+.meta-item i {
+    margin-right: 4px;
+}
+
+/* Contextual Highlight Colorings */
+.location-highlight i { color: #ff0000; }
+.virtual-highlight i { color: #2563eb; }
+
+.event-card-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1b1e34;
+    margin: 0 0 10px 0;
+    line-height: 1.4;
+}
+
+.event-card-excerpt {
+    font-size: 0.9rem;
+    color: #475569;
+    line-height: 1.5;
+    margin: 0 0 20px 0;
+}
+
+/* ==========================================================================
+   URGENT ACTION CALL-TO-ACTION BUTTONS
+   ========================================================================== */
+.event-action-btn {
+    margin-top: auto; /* Locks button cleanly to row footer baselines */
+    display: block;
+    width: 100%;
+    background-color: #1b1e34;
+    color: #ffffff;
+    text-align: center;
+    padding: 11px 0;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease;
+}
+
+.event-action-btn:hover {
+    background-color: #ff0000; /* Interactive feedback color swap */
+}
+
+/* Color Variation for Online Stream Buttons */
+.event-action-btn.virtual-btn {
+    background-color: #2563eb;
+}
+.event-action-btn.virtual-btn:hover {
+    background-color: #1d4ed8;
+}
+
+/* ==========================================================================
+   MOBILE MEDIA DRIVEN RESPONSIVE DEGRADATION MATRIX
+   ========================================================================== */
+@media (max-width: 680px) {
+    .events-grid-matrix {
+        grid-template-columns: 1fr; /* Normalizes down to unified single stacks */
+        gap: 20px;
+    }
+    
+    .events-viewport {
+        padding: 24px 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .events-page-header h1 {
+        font-size: 1.75rem;
+    }
+    
+    .events-filter-dock {
+        margin-bottom: 24px;
+    }
+    
+    .filter-tab {
+        padding: 10px 12px;
+        font-size: 0.88rem;
+    }
+    
+    .event-body-zone {
+        padding: 16px;
+    }
+}

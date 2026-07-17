@@ -913,9 +913,32 @@ a {
 .social-pill.youtube:hover   { background-color: #ff0000; }
 
 /* Responsive Guardrail */
+/* Responsive Guardrail - Sticky Footer Mobile View */
 @media (max-width: 768px) {
     .floating-social-column {
-        display: none; /* Safely hidden to keep small screens clean */
+        display: flex;         /* Force it to show up */
+        position: fixed;
+        top: auto;             /* Unstick from vertical center */
+        bottom: 0;             /* Snap it directly to the bottom edge */
+        right: 0;
+        left: 0;               /* Stretch it completely across the width */
+        transform: none;       /* Kill the vertical alignment offset */
+        
+        flex-direction: row;   /* FLIP TO HORIZONTAL ROW */
+        justify-content: center; /* Center the buttons inside the bar */
+        gap: 20px;             /* Comfortable breathing room between buttons */
+        
+        background-color: rgba(27, 30, 52, 0.95); /* Matches your dark neutral base with slight glass transparency */
+        padding: 12px 0;       /* Padding on top and bottom of the bar */
+        box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2); /* Cast shadow upwards over the content */
+        border-radius: 16px 16px 0 0; /* Optional: Softly rounds the top corners of the bar */
+    }
+
+    /* Optional: Ensure hover states work properly for mobile touch taps */
+    .social-pill {
+        width: 42px;
+        height: 42px;
+        box-shadow: none; /* Shadows handled by the parent container now */
     }
 }
 /* Mobile adjustments */

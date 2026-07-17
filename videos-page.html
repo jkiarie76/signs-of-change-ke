@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="videos-page.css">
+    <title>learn-videos</title>
+</head>
+<body>
+    <div class="video-page-wrapper">
+        <!-- Breadcrumbs & Header Context -->
+        <nav class="breadcrumb-nav">
+            <a href="learn-sign.html">Learn Sign</a> &gt; <span class="current-page">Videos</span>
+        </nav>
+        
+        <header class="video-page-header">
+            <h1>Visual Sign Tutorials</h1>
+            <p>Browse our scaling library of high-quality video demonstrations to master sign language visually.</p>
+        </header>
+
+        <!-- Unified Search, Filter & Sort Control Dock -->
+        <section class="control-dock">
+            <div class="search-box-wrapper">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="video-search-input" placeholder="Search by topic, keyword, or sign name...">
+            </div>
+
+            <div class="filters-wrapper">
+                <!-- Topic Filter Dropdown -->
+                <div class="select-custom">
+                    <select id="filter-topic">
+                        <option value="all">All Topics</option>
+                        <option value="alphabet">Alphabet & Letters</option>
+                        <option value="numbers">Numbers & Counting</option>
+                        <option value="phrases">Common Phrases</option>
+                    </select>
+                </div>
+
+                <!-- Date/Order Sorting Dropdown -->
+                <div class="select-custom">
+                    <select id="sort-order">
+                        <option value="latest">Sort: Latest Additions</option>
+                        <option value="oldest">Sort: Oldest First</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Video Card Grid Matrix -->
+        <main class="video-grid-matrix" id="video-grid-matrix">
+            
+            <!-- Video Card 1 -->
+            <a href="https://youtube.com/watch?v=sample1" target="_blank" rel="noopener noreferrer" 
+            class="video-dir-card" 
+            data-title="mastering the sign for letter A" 
+            data-topic="alphabet" 
+            data-date="2026-07-10">
+                <div class="card-thumbnail-zone">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&auto=format&fit=crop&q=60" alt="Signing Letter A">
+                    <span class="duration-badge">1:24</span>
+                </div>
+                <div class="card-body-zone">
+                    <span class="card-topic-tag">Alphabet</span>
+                    <h3 class="card-title">How to Sign the Letter "A"</h3>
+                    <p class="card-excerpt">A breakdown of the closed fist handshape, thumb positioning, and common orientation errors.</p>
+                    <div class="card-meta">
+                        <span class="meta-date"><i class="fa-regular fa-calendar"></i> July 2026</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Video Card 2 -->
+            <a href="https://youtube.com/watch?v=sample2" target="_blank" rel="noopener noreferrer" 
+            class="video-dir-card" 
+            data-title="counting from zero to ten basic numbers" 
+            data-topic="numbers" 
+            data-date="2026-05-14">
+                <div class="card-thumbnail-zone">
+                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=500&auto=format&fit=crop&q=60" alt="Signing Numbers">
+                    <span class="duration-badge">4:50</span>
+                </div>
+                <div class="card-body-zone">
+                    <span class="card-topic-tag">Numbers</span>
+                    <h3 class="card-title">Counting 0 to 10 Fluently</h3>
+                    <p class="card-excerpt">Mastering single-handed number execution with correct structural orientation shifts.</p>
+                    <div class="card-meta">
+                        <span class="meta-date"><i class="fa-regular fa-calendar"></i> May 2026</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Video Card 3 -->
+            <a href="https://youtube.com/watch?v=sample3" target="_blank" rel="noopener noreferrer" 
+            class="video-dir-card" 
+            data-title="saying thank you and common pleasantries" 
+            data-topic="phrases" 
+            data-date="2025-11-22">
+                <div class="card-thumbnail-zone">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&auto=format&fit=crop&q=60" alt="Signing Thank You">
+                    <span class="duration-badge">2:15</span>
+                </div>
+                <div class="card-body-zone">
+                    <span class="card-topic-tag">Common Phrases</span>
+                    <h3 class="card-title">Essential Pleasantries: "Thank You"</h3>
+                    <p class="card-excerpt">Learn how facial expressions and palm movement trajectories adjust standard social signals.</p>
+                    <div class="card-meta">
+                        <span class="meta-date"><i class="fa-regular fa-calendar"></i> November 2025</span>
+                    </div>
+                </div>
+            </a>
+
+        </main>
+
+        <!-- Empty State Viewport Error Handler -->
+        <div class="empty-state-notice" id="empty-state-notice" style="display: none;">
+            <i class="fa-regular fa-folder-open empty-icon"></i>
+            <h3>No tutorial videos match your search matrix</h3>
+            <p>Try refining your keywords or updating your active topic drop-down filter.</p>
+        </div>
+
+    </div>
+    
+</body>
+</html>

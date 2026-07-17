@@ -36,6 +36,40 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Desktop Navigation Click Dropdown Engine
+    const desktopDropdownLinks = document.querySelectorAll('.desktop-nav .dropdown > a');
+
+    desktopDropdownLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            // Stop the link anchor from jumping the page layout
+            e.preventDefault();
+            
+            const parentDropdown = link.parentElement;
+            const targetMenu = parentDropdown.querySelector('.dropdown-menu');
+            
+            if (targetMenu) {
+                // Close any other open desktop menus first to prevent layout overlaps
+                document.querySelectorAll('.desktop-nav .dropdown-menu').forEach(openMenu => {
+                    if (openMenu !== targetMenu) {
+                        openMenu.classList.remove('open');
+                    }
+                });
+                
+                // Toggle the current dropdown open or closed
+                targetMenu.classList.toggle('open');
+            }
+        });
+    });
+
+    // UX Safeguard: Close the dropdown automatically if the user clicks anywhere else outside the menu area
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.desktop-nav .dropdown')) {
+            document.querySelectorAll('.desktop-nav .dropdown-menu').forEach(openMenu => {
+                openMenu.classList.remove('open');
+            });
+        }
+    });
+
     // Newsletter Form Submission Prevention
     const newsletterForm = document.getElementById('newsletter-form');
     if (newsletterForm) {

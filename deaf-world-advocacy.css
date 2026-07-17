@@ -1,0 +1,261 @@
+/* ==========================================================================
+   GLOBAL VIEWPORT & BREADCRUMBS
+   ========================================================================== */
+.advocacy-viewport {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.breadcrumb-nav {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.breadcrumb-nav a {
+    color: #1b1e34;
+    text-decoration: none;
+    font-weight: 500;
+}
+.breadcrumb-nav a:hover {
+    color: #ff0000;
+}
+.breadcrumb-nav .current-page {
+    color: #94a3b8;
+}
+
+/* Header Context Typography */
+.advocacy-page-header h1 {
+    font-size: 2.2rem;
+    color: #1b1e34;
+    margin: 0 0 8px 0;
+}
+.advocacy-page-header p {
+    color: #475569;
+    font-size: 1.05rem;
+    max-width: 700px;
+    margin: 0 0 36px 0;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   HORIZONTAL CAPSULE FILTER DOCK
+   ========================================================================== */
+.advocacy-filter-dock {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.filter-chip {
+    background-color: #f1f5f9;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+    padding: 8px 18px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-chip:hover {
+    background-color: #e2e8f0;
+    color: #1b1e34;
+}
+
+.filter-chip.active {
+    background-color: #1b1e34;
+    color: #ffffff;
+    border-color: #1b1e34;
+}
+
+/* ==========================================================================
+   THE ADVOCACY MEDIUM CARD ARCHITECTURE
+   ========================================================================== */
+.advocacy-grid-matrix {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    gap: 30px;
+}
+
+.advocacy-card {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 10px rgba(15, 23, 42, 0.03);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Desktop Hover Interaction Lift */
+@media (hover: hover) {
+    .advocacy-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 25px -5px rgba(27, 30, 52, 0.08);
+    }
+}
+
+.advocacy-card-interior {
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+/* Meta Row Header Split Layout */
+.advocacy-meta-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    font-size: 0.8rem;
+}
+
+.urgency-timeline {
+    color: #64748b;
+    font-weight: 500;
+}
+.urgency-timeline i {
+    margin-right: 4px;
+}
+
+/* Contextual Categorization Badges */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+
+.policy-badge { background-color: #fef3c7; color: #d97706; } /* Amber */
+.legal-badge { background-color: #e0f2fe; color: #0284c7; }  /* Sky Blue */
+.toolkit-badge { background-color: #f3e8ff; color: #7c3aed; }/* Purple */
+
+/* Typography Rules */
+.advocacy-card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1b1e34;
+    margin: 0 0 12px 0;
+    line-height: 1.4;
+}
+
+.advocacy-card-excerpt {
+    font-size: 0.92rem;
+    color: #475569;
+    line-height: 1.6;
+    margin: 0 0 24px 0;
+}
+
+/* ==========================================================================
+   FOOTER ZONE CONSOLE: PROGRESS TRACKS & ACTIONS
+   ========================================================================== */
+.advocacy-footer-zone {
+    margin-top: auto; /* Forces action layer to anchor perfectly at row bottom */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Campaign Linear Metering Design */
+.progress-bar-container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.progress-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #475569;
+}
+
+.progress-track {
+    background-color: #f1f5f9;
+    height: 6px;
+    width: 100%;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    background-color: #ff0000; /* Vibrant target metric fill tint */
+    height: 100%;
+    border-radius: 3px;
+}
+
+/* Concrete Action Target Terminals */
+.advocacy-action-btn {
+    display: block;
+    width: 100%;
+    background-color: #1b1e34;
+    color: #ffffff;
+    text-align: center;
+    padding: 12px 0;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: background-color 0.15s ease;
+}
+
+.advocacy-action-btn:hover {
+    background-color: #ff0000;
+}
+
+/* Secondary Button Variations */
+.advocacy-action-btn.outline-btn {
+    background-color: transparent;
+    color: #1b1e34;
+    border: 2px solid #1b1e34;
+    padding: 10px 0; /* Compensation for border thickness offsets */
+}
+.advocacy-action-btn.outline-btn:hover {
+    background-color: #1b1e34;
+    color: #ffffff;
+}
+
+.advocacy-action-btn.resource-btn {
+    background-color: #7c3aed;
+}
+.advocacy-action-btn.resource-btn:hover {
+    background-color: #6d28d9;
+}
+
+/* ==========================================================================
+   MOBILE RESPONSIVE MATRIX DEGRADATIONS
+   ========================================================================== */
+@media (max-width: 680px) {
+    .advocacy-grid-matrix {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .advocacy-viewport {
+        padding: 24px 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .advocacy-page-header h1 {
+        font-size: 1.75rem;
+    }
+    
+    .advocacy-card-interior {
+        padding: 20px;
+    }
+}
