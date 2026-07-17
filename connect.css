@@ -219,13 +219,252 @@ a {
     border-radius: 20px;
     padding: 2.5rem; /* Generous inside padding stops fields from looking bloated */
 }
+/* WELCOME VIDEO SPACE  */
+/* ==========================================================================
+   INTERACTIVE VIDEO HERO
+   ========================================================================== */
+.hero-video-section {
+    position: relative;
+    height: 65vh; /* Perfect height so the form below is partially visible on scroll */
+    min-height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: #ffffff;
+    text-align: center;
+}
+
+/* Ambient Video Background */
+.video-background-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.bg-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Dark overlay for text contrast and legibility */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(27, 30, 52, 0.7) 0%, rgba(27, 30, 52, 0.85) 100%);
+    z-index: 2;
+}
+
+/* Content Overlay styling */
+.hero-video-content {
+    position: relative;
+    z-index: 3;
+    max-width: 800px;
+    padding: 0 1.5rem;
+}
+
+.eyebrow-light {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #00bcc0; /* Vibrant light turquoise */
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+
+.hero-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    color: #ffffff;
+}
+
+.hero-subtitle {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+/* Play Trigger Button with Pulsing Wave */
+.btn-play-welcome {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.play-icon {
+    width: 55px;
+    height: 55px;
+    background-color: #00a3a6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    box-shadow: 0 0 0 0 rgba(0, 163, 166, 0.6);
+    transition: all 0.3s ease;
+    animation: pulse-ring 2s infinite;
+}
+
+.btn-play-welcome:hover .play-icon {
+    background-color: #00bcc0;
+    transform: scale(1.1);
+}
+
+.btn-play-welcome:hover .play-text {
+    color: #00bcc0;
+}
+
+/* Pulse Animation for Play Button */
+@keyframes pulse-ring {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 163, 166, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(0, 163, 166, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 163, 166, 0);
+    }
+}
+
+/* ==========================================================================
+   POP-UP MODAL STYLES
+   ========================================================================== */
+.video-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.video-modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 17, 28, 0.95); /* Deep dark backdrop */
+    backdrop-filter: blur(8px);
+}
+
+.modal-content {
+    position: relative;
+    z-index: 1001;
+    width: 90%;
+    max-width: 850px;
+    background-color: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.video-modal.show .modal-content {
+    transform: scale(1);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 1002;
+    background: rgba(255,255,255,0.2);
+    color: #ffffff;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+.modal-close-btn:hover {
+    background: #00a3a6;
+}
+
+.modal-video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+}
+
+.modal-video-wrapper video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Tablet & Mobile Layout Shifts */
+@media (max-width: 768px) {
+    .hero-video-section {
+        height: 55vh;
+    }
+    .hero-title {
+        font-size: 2rem;
+    }
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+}
 /* --- Section 1: Hero Layout --- */
 .hero-text-content span{
     padding-bottom: 40px;
     font-family: sans-serif;
 }
+.div1{
+    display: flex;
+    justify-content: flex-start;
+    text-align:center;
+}
 .section-eyebrow-teal{
+    background-color: #ebf5f3;
+    padding: 1rem 1rem 0.5rem 1rem;
+    border-radius: 18px;
     color: turquoise;
+    height: 10px;
+    width: 30%;
 }
 .connect-hero-section {
     padding: 3rem 0 5rem;
@@ -237,7 +476,8 @@ a {
     align-items: center;
 }
 .hero-title {
-    font-size: 2.85rem;
+    color: black;
+    font-size: 2.5rem;
     font-weight: 700;
     line-height: 1.15;
     margin: 0 0 1.5rem 0;
@@ -296,97 +536,6 @@ a {
     line-height: 1.5;
     margin: 0;
 }
-
-/* --- Section 3: Video Grid Section --- */
-.welcome-video-section {
-    padding: 5rem 0;
-}
-.video-layout-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.3fr;
-    gap: 4rem;
-    align-items: start;
-}
-.video-heading {
-    font-size: 2.25rem;
-    font-weight: 700;
-    margin: 0 0 1.25rem 0;
-}
-.video-subtext {
-    font-size: 1.05rem;
-    line-height: 1.5;
-    color: #334155;
-    margin-bottom: 1.5rem;
-}
-.video-bullets-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-.video-bullets-list li {
-    margin-bottom: 0.75rem;
-    display: flex;
-    gap: 0.5rem;
-    color: #1e293b;
-}
-.bullet-dot {
-    color: #475569;
-}
-
-/* --- Video Canvas Player Window --- */
-.video-player-frame {
-    background-color: #0c1a30;
-    border-radius: 20px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
-.video-canvas {
-    height: 380px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.video-play-trigger {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    background-color: #00a3a3;
-    color: white;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-left: 4px;
-}
-.video-player-controls-row {
-    position: absolute;
-    bottom: 1.25rem;
-    left: 1.25rem;
-    display: flex;
-    gap: 0.5rem;
-}
-.player-pill-btn {
-    background-color: #000000;
-    color: #ffffff;
-    border: none;
-    padding: 0.35rem 0.75rem;
-    font-size: 0.75rem;
-    font-weight: 700;
-    border-radius: 4px;
-    cursor: pointer;
-}
-.video-player-footer {
-    background-color: rgba(0, 0, 0, 0.2);
-    padding: 1.25rem;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.9rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
 /* --- Section 4: Contact Form Setup --- */
 .contact-form-section {
     padding: 5rem 0;
@@ -405,6 +554,9 @@ a {
     line-height: 1.5;
     color: #334155;
     margin-bottom: 2rem;
+}
+.contact, .email{
+    margin: 1rem;
 }
 .accessibility-notice-card {
     background-color: rgba(255, 255, 255, 0.4);
@@ -711,6 +863,60 @@ a {
     font-weight: 600;
     font-size: 0.9rem;
     margin-right: 30px;
+}
+/* THE FLOATING SOCIAL LINK WRAPPER */
+/* ==========================================================================
+   VERTICAL FLOATING SOCIAL COLUMN (RIGHT-ALIGNED)
+   ========================================================================== */
+.floating-social-column {
+    position: fixed;
+    top: 50%;
+    right: 25px; /* Glued to the right side, detached by 25px */
+    transform: translateY(-50%); /* Keeps it perfectly centered vertically */
+    
+    display: flex;
+    flex-direction: column; /* STRICTLY VERTICAL STACK */
+    gap: 12px; /* Gap between buttons */
+    z-index: 9999; /* Floats above background layers */
+}
+
+/* Circular Floating Button */
+.social-pill {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.15rem;
+    background-color: #1b1e34; /* Dark neutral base */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    
+    /* Smooth transitions for physics-based hovering feel */
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                box-shadow 0.2s ease, 
+                background-color 0.2s ease;
+}
+
+/* Hover Physics: Lift up and expand slightly */
+.social-pill:hover {
+    transform: scale(1.12); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Vibrant Brand Focus Colors on Hover */
+.social-pill.facebook:hover  { background-color: #1877f2; }
+.social-pill.twitter:hover   { background-color: #000000; }
+.social-pill.instagram:hover { background-color: #e1306c; }
+.social-pill.youtube:hover   { background-color: #ff0000; }
+
+/* Responsive Guardrail */
+@media (max-width: 768px) {
+    .floating-social-column {
+        display: none; /* Safely hidden to keep small screens clean */
+    }
 }
 /* Mobile adjustments */
 @media (max-width: 640px) {

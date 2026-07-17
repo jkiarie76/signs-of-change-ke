@@ -23,7 +23,15 @@
             <nav class="desktop-nav">
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="deaf-culture-101.html" class="active">Deaf Culture 101</a></li>
+                    <!-- Added 'dropdown' class and nested UL -->
+                    <li class="dropdown">
+                        <a href="deaf-culture-101.html" class="active">Deaf Culture 101 <span class="arrow">▼</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="deaf-history.html">Deaf History</a></li>
+                            <li><a href="deaf-etiquette.html">Deaf Etiquette</a></li>
+                            <li><a href="myths-facts.html">Myths & Facts</a></li>
+                        </ul>
+                    </li>
                     <li><a href="deaf-world.html">Deaf World</a></li>
                     <li><a href="learn-sign.html">Learn Sign</a></li>
                     <li><a href="connect.html">Connect</a></li>
@@ -32,12 +40,20 @@
 
             <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
         </div>
-        
+    
         <!-- Mobile Navigation Dropdown -->
         <nav class="mobile-nav" id="mobile-nav">
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="deaf-culture-101.html" class="active">Deaf Culture 101</a></li>
+                <!-- Added dropdown to mobile view as well -->
+                <li class="dropdown">
+                    <a href="deaf-culture-101.html" class="active">Deaf Culture 101 <span>▼</span></a>
+                    <ul class="mobile-dropdown-menu">
+                        <li><a href="deaf-history.html">Deaf History</a></li>
+                        <li><a href="deaf-etiquette.html">Deaf Etiquette</a></li>
+                        <li><a href="myths-facts.html">Myths & Facts</a></li>
+                    </ul>
+                </li>
                 <li><a href="deaf-world.html">Deaf World</a></li>
                 <li><a href="learn-sign.html">Learn Sign</a></li>
                 <li><a href="connect.html">Connect</a></li>
@@ -78,9 +94,6 @@
                     <ul class="panel-list">
                         <li><i class="fa-solid fa-circle-check"></i> Wave, tap a shoulder, or flick the lights to get attention.</li>
                         <li><i class="fa-solid fa-circle-check"></i> Face the person, keep your hands and mouth visible, speak at a normal pace.</li>
-                        <li><i class="fa-solid fa-circle-check"></i> Look at the Deaf person, not the interpreter, when speaking.</li>
-                        <li><i class="fa-solid fa-circle-check"></i> Ask preferred communication: sign, lipreading, typing, writing — let them lead.</li>
-                        <li><i class="fa-solid fa-circle-check"></i> Learn a few signs. 'Hello', 'thank you', your name — it matters.</li>
                     </ul>
                 </div>
                 <div class="panel-box dont-box">
@@ -88,10 +101,10 @@
                     <ul class="panel-list">
                         <li><i class="fa-solid fa-circle-xmark"></i> Don't shout, exaggerate mouth shapes, or over-enunciate.</li>
                         <li><i class="fa-solid fa-circle-xmark"></i> Don't say 'never mind' when asked to repeat. Rephrase and try again.</li>
-                        <li><i class="fa-solid fa-circle-xmark"></i> Don't grab hands mid-sign — it's the equivalent of covering someone's mouth.</li>
-                        <li><i class="fa-solid fa-circle-xmark"></i> Don't assume everyone lip-reads or wants a cochlear implant.</li>
-                        <li><i class="fa-solid fa-circle-xmark"></i> Don't talk about a Deaf person to their interpreter in the third person.</li>
                     </ul>
+                </div>
+                <div class="btn-center-bottom">
+                    <a class="btn-etiquette" href="deaf-etiquette.html">Explore Deaf Etiquette</a>
                 </div>
             </div>
         </div>
@@ -108,6 +121,7 @@
             <div class="timeline-container">
                 <div class="timeline-line"></div>
                 
+                <!-- ALWAYS VISIBLE NODES (First 2) -->
                 <div class="timeline-node">
                     <div class="node-marker"></div>
                     <div class="node-content">
@@ -124,30 +138,43 @@
                         <p>Thomas Gallaudet and Laurent Clerc found the first permanent U.S. school for the Deaf — the birthplace of American Sign Language.</p>
                     </div>
                 </div>
-                <div class="timeline-node">
-                    <div class="node-marker"></div>
-                    <div class="node-content">
-                        <span class="node-year">1880</span>
-                        <h6>The Milan Conference</h6>
-                        <p>Hearing educators vote to ban sign language in schools. Generations of Deaf children are denied their natural language — a wound the community still names today.</p>
+                
+                <!-- INITIALLY HIDDEN NODES (Wrapped inside a container) -->
+                <div class="timeline-extended" id="timeline-extended">
+                    <div class="timeline-node">
+                        <div class="node-marker"></div>
+                        <div class="node-content">
+                            <span class="node-year">1880</span>
+                            <h6>The Milan Conference</h6>
+                            <p>Hearing educators vote to ban sign language in schools. Generations of Deaf children are denied their natural language — a wound the community still names today.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-node">
+                        <div class="node-marker"></div>
+                        <div class="node-content">
+                            <span class="node-year">1988</span>
+                            <h6>Deaf President Now</h6>
+                            <p>Gallaudet University students shut down campus until a Deaf president is appointed. A defining moment of Deaf civil-rights organizing.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-node">
+                        <div class="node-marker"></div>
+                        <div class="node-content">
+                            <span class="node-year">TODAY</span>
+                            <h6>Deaf-led culture</h6>
+                            <p>Deaf filmmakers, poets, athletes and educators are shaping mainstream stages — from Oscar wins to Broadway to the Deaflympics.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="timeline-node">
-                    <div class="node-marker"></div>
-                    <div class="node-content">
-                        <span class="node-year">1988</span>
-                        <h6>Deaf President Now</h6>
-                        <p>Gallaudet University students shut down campus until a Deaf president is appointed. A defining moment of Deaf civil-rights organizing.</p>
-                    </div>
-                </div>
-                <div class="timeline-node">
-                    <div class="node-marker"></div>
-                    <div class="node-content">
-                        <span class="node-year">TODAY</span>
-                        <h6>Deaf-led culture</h6>
-                        <p>Deaf filmmakers, poets, athletes and educators are shaping mainstream stages — from Oscar wins to Broadway to the Deaflympics.</p>
-                    </div>
-                </div>
+            </div>
+
+            <!-- Action Button Row -->
+            <div class="history-actions-wrapper">
+                <!-- Inline expand toggle -->
+                <button id="see-full-history-btn" class="btn-see-more">See Full History ▼</button>
+                
+                <!-- Target page router link -->
+                <a href="deaf-history.html" class="btn-explore-page">Explore Full History Page</a>
             </div>
         </div>
     </section>
@@ -156,7 +183,7 @@
         <div class="container">
             <div class="section-header">
                 <span class="eyebrow">03 · MYTH-BUSTING LIBRARY</span>
-                <h3>Six myths, gently corrected</h3>
+                <h3>Myths, gently corrected</h3>
             </div>
             <p class="section-intro-text">You don't have to be embarrassed if you believed any of these — most hearing people do. What matters is what you do with the correction.</p>
             
@@ -169,22 +196,9 @@
                     <div class="myth-head"><span class="card-meta-tag">MYTH 02</span>"All Deaf people can read lips."</div>
                     <div class="fact-body"><span class="card-meta-tag accent-tag">FACT</span>Even skilled lip-readers catch only 30-45% of English on the lips. Lipreading is a supplement, not a substitute for access.</div>
                 </div>
-                <div class="myth-card">
-                    <div class="myth-head"><span class="card-meta-tag">MYTH 03</span>"Cochlear implants 'fix' deafness."</div>
-                    <div class="fact-body"><span class="card-meta-tag accent-tag">FACT</span>Implants can give some access to sound, but recipients are still Deaf. Many use sign alongside spoken language — the choice is personal.</div>
-                </div>
-                <div class="myth-card">
-                    <div class="myth-head"><span class="card-meta-tag">MYTH 04</span>"Deaf people can't drive, work in music, or do X."</div>
-                    <div class="fact-body"><span class="card-meta-tag accent-tag">FACT</span>Deaf people drive, DJ, dance, direct films, perform surgery and run companies. The barrier is usually the environment, not the person.</div>
-                </div>
-                <div class="myth-card">
-                    <div class="myth-head"><span class="card-meta-tag">MYTH 05</span>"Signing in front of a Deaf person is rude if they're not part of the chat."</div>
-                    <div class="fact-body"><span class="card-meta-tag accent-tag">FACT</span>The opposite — signing keeps Deaf people included by default. Whispering or mouthing silently is what excludes them.</div>
-                </div>
-                <div class="myth-card">
-                    <div class="myth-head"><span class="card-meta-tag">MYTH 06</span>"Deaf children should learn to speak before they learn to sign."</div>
-                    <div class="fact-body"><span class="card-meta-tag accent-tag">FACT</span>Research is clear: early exposure to a full language — signed or spoken — is what protects language development. Sign doesn't delay speech; language deprivation does.</div>
-                </div>
+            </div>
+            <div class="btn-bottom">
+                <a class="btn-myths-facts" href="myths-facts.html">Explore More Myths&Facts</a>
             </div>
         </div>
     </section>
@@ -220,6 +234,22 @@
             </div>
         </div>
     </footer>
+
+     <!-- Free-Floating Vertical Social Column -->
+    <div class="floating-social-column">
+        <a href="https://facebook.com" class="social-pill facebook" target="_blank" rel="noopener noreferrer" title="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+        </a>
+        <a href="https://twitter.com" class="social-pill twitter" target="_blank" rel="noopener noreferrer" title="Twitter">
+            <i class="fa-brands fa-x-twitter"></i>
+        </a>
+        <a href="https://instagram.com" class="social-pill instagram" target="_blank" rel="noopener noreferrer" title="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://youtube.com" class="social-pill youtube" target="_blank" rel="noopener noreferrer" title="YouTube">
+            <i class="fa-brands fa-youtube"></i>
+        </a>
+    </div>
 
     <script src="script.js"></script>
 </body>

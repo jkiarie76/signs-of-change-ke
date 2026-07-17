@@ -43,11 +43,57 @@
         </nav>
     </header>
     
+    <!-- Interactive Video Hero Section -->
+<section class="hero-video-section">
+    <!-- Background Video Loop -->
+    <div class="video-background-container">
+        <!-- Replace poster and sources with your generated video files -->
+        <video autoplay loop muted playsinline class="bg-video" poster="images/hero-fallback.jpg">
+            <source src="videos/bg-sign-loop.webm" type="video/webm">
+            <source src="videos/bg-sign-loop.mp4" type="video/mp4">
+        </video>
+        <!-- Translucent Dark Overlay for High Readability -->
+        <div class="video-overlay"></div>
+    </div>
+
+    <!-- Foreground Content -->
+    <div class="container hero-video-content">
+        <span class="eyebrow-light">CONNECT WITH US</span>
+        <h1 class="hero-title">Let's write the next chapter together</h1>
+        <p class="hero-subtitle">Have a story to tell, a question to ask, or just want to say hello? We are always listening.</p>
+        
+        <!-- Action Button Triggering the Modal -->
+        <button class="btn-play-welcome" id="open-welcome-modal">
+            <span class="play-icon"><i class="fa-solid fa-play"></i></span>
+            <span class="play-text">Watch Welcome in Sign Language</span>
+        </button>
+    </div>
+</section>
+
+<!-- Hidden Pop-up Video Modal -->
+<div class="video-modal" id="welcome-video-modal">
+    <div class="modal-backdrop" id="modal-backdrop"></div>
+    <div class="modal-content">
+        <button class="modal-close-btn" id="close-welcome-modal">✕</button>
+        <div class="modal-video-wrapper">
+            <!-- Pop-up video player with controls -->
+            <video id="modal-player" controls poster="images/welcome-poster.jpg">
+                <source src="hello.mp4" type="video/mp4">
+                <!-- Track for captions/subtitles (Highly recommended for accessibility!) -->
+                <track src="captions/welcome-en.vtt" kind="captions" srclang="en" label="English" default>
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+</div>
+
     <!-- SECTION 1: HERO (ABOUT ME) -->
     <section class="connect-hero-section">
         <div class="main-container connect-hero-grid">
             <div class="hero-text-content">
-                <span class="section-eyebrow-teal">ABOUT ME</span>
+                <div class="div1">
+                    <span class="section-eyebrow-teal">ABOUT ME</span>
+                </div>
                 <h1 class="hero-title">Hi, I’m Jeridah — writer, signer, and reluctant explainer.</h1>
                 <p class="hero-body-p">
                     I grew up in a mixed hearing–Deaf family, learned to sign before I learned to read, and started Hands & Voices because most of what the internet said about Deaf people was written by hearing people. I wanted a place with room for both.
@@ -85,36 +131,6 @@
         </div>
     </section>
 
-    <!-- SECTION 3: WELCOME VIDEO -->
-    <section class="welcome-video-section">
-        <div class="main-container video-layout-grid">
-            <div class="video-info-side">
-                <span class="section-eyebrow-teal">WELCOME VIDEO</span>
-                <h2 class="video-heading">A 90–second hello, in sign and voice.</h2>
-                <p class="video-subtext">Signed by me, voiced by my brother Kai, captioned in English and Spanish. Turn the sound on — or off. Both work.</p>
-                <ul class="video-bullets-list">
-                    <li><span class="bullet-dot">•</span> Closed captions (EN, ES)</li>
-                    <li><span class="bullet-dot">•</span> Full written transcript below the player</li>
-                    <li><span class="bullet-dot">•</span> ASL as the primary language</li>
-                </ul>
-            </div>
-            <div class="video-player-frame">
-                <div class="video-canvas">
-                    <button class="video-play-trigger"><i class="fas fa-play"></i></button>
-                    
-                    <div class="video-player-controls-row">
-                        <button class="player-pill-btn">CC</button>
-                        <button class="player-pill-btn">Transcript</button>
-                        <button class="player-pill-btn">ASL</button>
-                    </div>
-                </div>
-                <div class="video-player-footer">
-                    A welcome from Amara — 1:32. Captions and full transcript included.
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- SECTION 4: CONTACT FORM (SAY HELLO) -->
     <section class="contact-form-section">
         <div class="main-container contact-layout-grid">
@@ -122,10 +138,16 @@
                 <span class="section-eyebrow-teal">SAY HELLO</span>
                 <h2 class="contact-heading">Contact</h2>
                 <p class="contact-intro-text">Story pitches, corrections, cultural feedback, or just a wave. Every message is read by a human.</p>
-                
-                <div class="accessibility-notice-card">
-                    <h4>Accessibility note</h4>
-                    <p>This form works with screen readers and keyboard only — every field is labelled, errors read aloud, and no CAPTCHA image is used.</p>
+                <p class="contact">Contact: 0700000000</p>
+                <p class="email">Email: info@signsofchangeke.com</p>
+                <div class="social-links-wrapper">
+                    <a href="#" class="social-circle-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-circle-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-circle-link"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#" class="social-circle-link"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#" class="social-circle-link"><i class="fa-brands fa-pinterest-p"></i></a>
+                    <a href="#" class="social-circle-link"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" class="social-circle-link"><i class="fa-brands fa-youtube"></i></a>
                 </div>
             </div>
             
@@ -211,6 +233,22 @@
             <a href="#" class="privacy-link">Privacy Policy</a>
         </div>
     </footer>
+
+    <!-- Free-Floating Vertical Social Column -->
+    <div class="floating-social-column">
+        <a href="https://facebook.com" class="social-pill facebook" target="_blank" rel="noopener noreferrer" title="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+        </a>
+        <a href="https://twitter.com" class="social-pill twitter" target="_blank" rel="noopener noreferrer" title="Twitter">
+            <i class="fa-brands fa-x-twitter"></i>
+        </a>
+        <a href="https://instagram.com" class="social-pill instagram" target="_blank" rel="noopener noreferrer" title="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://youtube.com" class="social-pill youtube" target="_blank" rel="noopener noreferrer" title="YouTube">
+            <i class="fa-brands fa-youtube"></i>
+        </a>
+    </div>
 
     <script src="script.js"></script>
     

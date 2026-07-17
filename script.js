@@ -22,6 +22,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Mobile Dropdown Sub-menu Toggle
+    const mobileDropdownTrigger = document.querySelector('.mobile-dropdown-trigger');
+    const mobileDropdownParent = document.getElementById('mobile-dropdown-parent');
+
+    if (mobileDropdownTrigger && mobileDropdownParent) {
+        mobileDropdownTrigger.addEventListener('click', (e) => {
+            // Prevent navigating to '#' or a dead link when opening the drawer
+            e.preventDefault(); 
+            
+            // Toggle the active class to expand the menu
+            mobileDropdownParent.classList.toggle('open-dropdown');
+        });
+    }
+
     // Newsletter Form Submission Prevention
     const newsletterForm = document.getElementById('newsletter-form');
     if (newsletterForm) {
@@ -75,13 +89,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 { char: '0', desc: 'All fingers curved cleanly meeting the thumb pad securely to signify zero.' },
                 { char: '1', desc: 'Index finger pointing straight up, back of the hand facing outwards to viewer.' },
                 { char: '2', desc: 'Index and middle fingers extended vertically upright, spaced cleanly.' },
-                { char: '3', desc: 'Thumb, index, and middle fingers extended fully out explicitly.' },
+                { char: '3', desc: 'Show your thumb, index finger, and middle finger.' },
                 { char: '4', desc: 'Four distinct fingers extended straight up, thumb tucked inward over palm.' },
                 { char: '5', desc: 'All five digits completely spread open wide, palm facing standard viewer.' },
                 { char: '6', desc: 'Pinky finger tip touches thumb pad explicitly, remaining three fingers extended upright.' },
-                { char: '7', desc: 'Ring finger tip touches thumb pad explicitly, remaining three fingers extended upright.' },
-                { char: '8', desc: 'Middle finger tip touches thumb pad explicitly, remaining three fingers extended upright.' },
-                { char: '9', desc: 'Index finger tip touches thumb pad explicitly, remaining three fingers extended upright.' }
+                { char: '7', desc: 'Show two fingers on your right hand resting on a closed left fist.' },
+                { char: '8', desc: 'Show three fingers on your right hand resting on a closed left fist.' },
+                { char: '9', desc: 'Show four fingers on your right hand resting on a closed left fist.' },
+                { char: '10', desc: 'Bring both of your closed fists together.' }
             ]
         };
 
@@ -150,51 +165,108 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================================================
+    // 3. ABOUT PAGE: HISTORICAL TIMELINE EXPANDER MODULE
+    // ==========================================================================
+    const toggleBtn = document.getElementById("see-full-history-btn");
+    const extendedTimeline = document.getElementById("timeline-extended");
+
+    if (toggleBtn && extendedTimeline) {
+        toggleBtn.addEventListener("click", function () {
+            // Check if it's currently expanded
+            const isExpanded = extendedTimeline.classList.toggle("is-expanded");
+            
+            // Switch text content dynamically
+            if (isExpanded) {
+                toggleBtn.innerHTML = "Show Less ▲";
+            } else {
+                toggleBtn.innerHTML = "See Full History ▼";
+                
+                // Smoothly scroll back slightly if user collapses long items
+                extendedTimeline.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        });
+    }
+
+    // ==========================================================================
+    // 4. CONNECT PAGE: INTERACTIVE VIDEO HERO MODAL
+    // ==========================================================================
+    const openModalBtn = document.getElementById('open-welcome-modal');
+    const closeModalBtn = document.getElementById('close-welcome-modal');
+    const modalBackdrop = document.getElementById('modal-backdrop');
+    const videoModal = document.getElementById('welcome-video-modal');
+    const modalPlayer = document.getElementById('modal-player');
+
+    if (openModalBtn && videoModal && modalPlayer) {
+        // Open Modal and Play Video
+        openModalBtn.addEventListener('click', () => {
+            videoModal.classList.add('show');
+            modalPlayer.currentTime = 0; // Starts clean from the beginning
+            modalPlayer.play();
+        });
+
+        // Handle closing events safely
+        const closeModal = () => {
+            videoModal.classList.remove('show');
+            modalPlayer.pause(); // Instantly stops playback sound when hidden
+        };
+
+        if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+        if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
+
+        // Safeguard: Allow escaping the video view by hitting the "Escape" key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && videoModal.classList.contains('show')) {
+                closeModal();
+            }
+        });
+    }
+
+    // ==========================================================================
     // 5. CONNECT PAGE: INTERACTIVE ACCORDION TOGGLE MODULE
     // ==========================================================================
     // FAQ Accordion - Isolated Protection Block
-try {
-    const accordionTriggers = document.querySelectorAll('.accordion-trigger');
-    
-    if (accordionTriggers.length === 0) {
-        console.warn("FAQ Accordion Trigger warning: No elements found with class '.accordion-trigger'. Check your HTML structure.");
+    try {
+        const accordionTriggers = document.querySelectorAll('.accordion-trigger');
+        
+        if (accordionTriggers.length === 0) {
+            console.warn("FAQ Accordion Trigger warning: No elements found with class '.accordion-trigger'. Check your HTML structure.");
+        }
+
+        accordionTriggers.forEach(trigger => {
+            trigger.onclick = function(e) {
+                e.preventDefault(); // Stop any accidental form or anchor submissions
+                
+                const currentItem = this.parentElement;
+                const currentPanel = currentItem.querySelector('.accordion-content-panel');
+                const currentChevron = this.querySelector('.fa-chevron-down');
+                
+                if (!currentPanel) {
+                    console.error("FAQ Error: Could not find '.accordion-content-panel' inside the accordion-item.");
+                    return;
+                }
+
+                // Toggle active state
+                const isActive = currentItem.classList.toggle('active');
+                
+                // Absolute direct fallback style injection
+                if (isActive) {
+                    currentPanel.style.display = "block";
+                    currentPanel.style.maxHeight = "500px";
+                    currentPanel.style.opacity = "1";
+                    currentPanel.style.visibility = "visible";
+                    if (currentChevron) currentChevron.style.transform = "rotate(180deg)";
+                } else {
+                    currentPanel.style.display = "none";
+                    currentPanel.style.maxHeight = "0";
+                    currentPanel.style.opacity = "0";
+                    currentPanel.style.visibility = "hidden";
+                    if (currentChevron) currentChevron.style.transform = "rotate(0deg)";
+                }
+            };
+        });
+    } catch (faqError) {
+        console.error("Critical error inside FAQ script execution:", faqError);
     }
-
-    accordionTriggers.forEach(trigger => {
-        trigger.onclick = function(e) {
-            e.preventDefault(); // Stop any accidental form or anchor submissions
-            
-            const currentItem = this.parentElement;
-            const currentPanel = currentItem.querySelector('.accordion-content-panel');
-            const currentChevron = this.querySelector('.fa-chevron-down');
-            
-            if (!currentPanel) {
-                console.error("FAQ Error: Could not find '.accordion-content-panel' inside the accordion-item.");
-                return;
-            }
-
-            // Toggle active state
-            const isActive = currentItem.classList.toggle('active');
-            
-            // Absolute direct fallback style injection
-            if (isActive) {
-                currentPanel.style.display = "block";
-                currentPanel.style.maxHeight = "500px";
-                currentPanel.style.opacity = "1";
-                currentPanel.style.visibility = "visible";
-                if (currentChevron) currentChevron.style.transform = "rotate(180deg)";
-            } else {
-                currentPanel.style.display = "none";
-                currentPanel.style.maxHeight = "0";
-                currentPanel.style.opacity = "0";
-                currentPanel.style.visibility = "hidden";
-                if (currentChevron) currentChevron.style.transform = "rotate(0deg)";
-            }
-        };
-    });
-} catch (faqError) {
-    console.error("Critical error inside FAQ script execution:", faqError);
-}
 
     // Connect Contact Form submission validation
     const connectForm = document.getElementById('connect-contact-form');

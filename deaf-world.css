@@ -63,18 +63,16 @@ img {
     margin-bottom: 2.5rem;
     max-width: 700px;
 }
-
 /* ==========================================================================
-   2. SITE HEADER & NAVIGATION COMPONENT
+   1. NAVIGATION & HEADER STYLES
    ========================================================================== */
-/* --- Navigation --- */
 .header {
     border-bottom: 1px solid rgba(229, 231, 235, 0.5);
     padding: 1rem 0;
-    background-color:rgba(253, 251, 247, 0.75);
+    background-color: rgba(253, 251, 247, 0.75);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    transition: backround-color 0.3s ease, backdrop-filter 0.3s ease;
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -118,25 +116,16 @@ img {
     font-size: 0.75rem;
     color: var(--text-muted);
     text-transform: uppercase;
-    /* letter-spacing: 0.05em; */
-    /* margin-top: 0.1rem; */
 }
 
+/* ==========================================================================
+   2. DESKTOP NAVIGATION
+   ========================================================================== */
 .desktop-nav ul {
     display: flex;
     gap: 2rem;
     list-style: none;
 }
-
-.desktop-nav a {
-    font-weight: 500;
-    color: var(--text-muted);
-    transition: color 0.2s;
-    text-transform:uppercase;
-
-}
-/* on hover display border left to right teal color */
-/* Base styling targeting the desktop navigation links */
 .desktop-nav ul li a {
     font-weight: 500;
     font-size: 0.8rem;
@@ -145,77 +134,123 @@ img {
     font-weight: bolder;
     letter-spacing: 0.02em;
     padding-bottom: 0.25rem;
-    position: relative; /* CRITICAL: Acts as an anchor for the absolute fake underline */
+    position: relative; /* Anchor for fake underline */
     transition: color 0.3s ease;
 }
 
-/* Creating the fake underline using ::after */
+/* Underline Animation Effect */
 .desktop-nav ul li a::after {
     content: '';
     position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 3px;                 /* The thickness of your underline */
-    background-color: turquoise;   /* Your Turquoise Teal color */
-    
-    /* Animation magic setup */
-    transform: scaleX(0);        /* Start shrunken down to 0 width */
-    transform-origin: bottom left; /* Forces the scaling expansion to start from the LEFT */
-    transition: transform 0.4s ease; /* Controls the speed (0.4s) and smoothness (ease) */
+    height: 3px;
+    background-color: turquoise;
+    transform: scaleX(0);
+    transform-origin: bottom left;
+    transition: transform 0.4s ease;
 }
-
-/* Hover state: change text color and grow the line to full size */
 .desktop-nav ul li a:hover {
     color: turquoise;
 }
 
-.desktop-nav ul li a:hover::after {
-    transform: scaleX(1);        /* Scales the line horizontally to 100% width */
+.desktop-nav ul li a:hover::after,
+.desktop-nav ul li a.active::after {
+    transform: scaleX(1);
 }
 
-/* Active state: keeps the line permanently visible on the current page link */
 .desktop-nav ul li a.active {
     color: turquoise;
 }
 
-.desktop-nav ul li a.active::after {
-    transform: scaleX(1);        /* Keeps it full width for the active page */
-}
-.desktop-nav a:hover{
-    /* color:#00a3a6; */
-    border-bottom-color:#00a3a6 ;
-}
-.desktop-nav a:hover, .desktop-nav a.active {
-    color: #00a3a6;;
+/* Desktop Dropdown Positioning */
+.desktop-nav ul li {
+    position: relative;
 }
 
-.mobile-menu-btn {
+.desktop-nav .dropdown-menu {
     display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+    z-index: 100;
+    padding: 10px 0;
+    list-style: none;
+}
+
+.desktop-nav .dropdown-menu li {
+    width: 100%;
+}
+
+.desktop-nav .dropdown-menu li a {
+    padding: 8px 16px;
+    display: block;
+    color: #333;
+    text-decoration: none;
+}
+
+.desktop-nav .dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* ==========================================================================
+   3. MOBILE NAVIGATION (DEFAULT: HIDDEN ON DESKTOP)
+   ========================================================================== */
+.mobile-menu-btn {
+    display: none; /* Hidden on desktop screens */
     background: none;
     border: none;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     cursor: pointer;
+    color: var(--navy-dark, #333);
+    padding: 0;
 }
 
 .mobile-nav {
-    display: none;
+    display: none; /* Hidden on desktop screens */
     padding: 1rem 1.5rem;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--border, #e5e7eb);
 }
 
-.mobile-nav.open {
-    display: block;
+.mobile-nav .mobile-dropdown-menu {
+    list-style: none;
+    padding-left: 20px;
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 .mobile-nav ul {
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .mobile-nav li {
     padding: 0.5rem 0;
 }
 
+/* ==========================================================================
+   4. RESPONSIVE MEDIA QUERIES (Triggered below 768px width)
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* Hide desktop navigation link container */
+    .desktop-nav {
+        display: none !important;
+    }
+
+    /* Display mobile navigation triggers */
+    .mobile-menu-btn {
+        display: block !important;
+    }
+
+    /* Display mobile nav drawer when active class 'open' is applied via JS */
+    .mobile-nav.open {
+        display: block !important;
+    }
+}
 /* ==========================================================================
    3. DEAF WORLD HERO SPLIT COMPONENT (image_d14f1f.jpg)
    ========================================================================== */
@@ -235,9 +270,15 @@ img {
     display: flex;
     flex-direction: column;
 }
-
+.hero-text-side .eyebrow-accent{
+    background-color: #EBF5F3;
+    border-radius: 18px;
+    padding: 1rem;
+    width: 30%;
+    text-align: center;
+}
 .hero-display-title {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 800;
     color: var(--color-dark);
     line-height: 1.15;
@@ -299,8 +340,7 @@ img {
    ========================================================================== */
 .myths-layout-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    grid-template-columns:1fr;
     background-color: #f8f5ee;
 }
 
@@ -333,6 +373,15 @@ img {
     font-size: 2.2rem;
     font-weight: 800;
     color: var(--color-dark);
+}
+.section-header .eyebrow{
+    background-color: #EBF5F3;
+    border-radius: 18px;
+    padding: 1rem;
+    font-size: 800;
+    font-size: 0.8rem;
+    width: 25%;
+    text-align: center;
 }
 .myths-layout-grid{
     background-color: #fdfbf7;
@@ -376,7 +425,20 @@ img {
     margin-top: 2rem;
     padding-top: 1rem;
 }
-
+.card-footer-action a{
+    background-color: rgb(9, 151, 151);
+    padding: 1rem;
+    border-radius: 18px;
+    color: white;
+    transition: 2s ease;
+}
+.card-footer-action a span{
+    color:white;
+    font-size: 1.5rem;
+}
+.card-footer-action a:hover{
+    background-color: turquoise;
+}
 .read-time-tag {
     font-size: 0.85rem;
     color: var(--color-muted);
@@ -594,7 +656,12 @@ img {
     margin-top: auto;
     color: turquoise;
 }
-
+.container .div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
 /* ==========================================================================
    9. NEWSLETTER CONVERT BOX COMPONENT (image_d15664.png)
    ========================================================================== */
@@ -619,7 +686,7 @@ img {
 
 .dark-newsletter-banner h2 {
     color: #ffffff;
-    font-size: 2.4rem;
+    font-size: 2rem;
     font-weight: 800;
     margin: 0.75rem 0 1rem 0;
     line-height: 1.2;
@@ -646,7 +713,7 @@ img {
     border: 1px solid #334155;
     border-radius: 50px;
     padding: 0.95rem 1.75rem;
-    color: #ffffff;
+    color: turquoise;
     font-family: var(--font-family);
     font-size: 1rem;
     outline: none;
@@ -654,7 +721,7 @@ img {
 }
 
 .newsletter-input-field::placeholder {
-    color: #64748b;
+    color: white;
 }
 
 .newsletter-input-field:focus {
@@ -730,6 +797,60 @@ img {
 .footer-socials a:hover {
     color: turquoise;           /* Swaps nicely to your Turquoise Teal theme accent color */
     transform: translateY(-3px); /* Subtle lift animation on hover */
+}
+/* FLOATING SOCIAL LINKS */
+/* ==========================================================================
+   VERTICAL FLOATING SOCIAL COLUMN (RIGHT-ALIGNED)
+   ========================================================================== */
+.floating-social-column {
+    position: fixed;
+    top: 50%;
+    right: 25px; /* Glued to the right side, detached by 25px */
+    transform: translateY(-50%); /* Keeps it perfectly centered vertically */
+    
+    display: flex;
+    flex-direction: column; /* STRICTLY VERTICAL STACK */
+    gap: 12px; /* Gap between buttons */
+    z-index: 9999; /* Floats above background layers */
+}
+
+/* Circular Floating Button */
+.social-pill {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.15rem;
+    background-color: #1b1e34; /* Dark neutral base */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    
+    /* Smooth transitions for physics-based hovering feel */
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                box-shadow 0.2s ease, 
+                background-color 0.2s ease;
+}
+
+/* Hover Physics: Lift up and expand slightly */
+.social-pill:hover {
+    transform: scale(1.12); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Vibrant Brand Focus Colors on Hover */
+.social-pill.facebook:hover  { background-color: #1877f2; }
+.social-pill.twitter:hover   { background-color: #000000; }
+.social-pill.instagram:hover { background-color: #e1306c; }
+.social-pill.youtube:hover   { background-color: #ff0000; }
+
+/* Responsive Guardrail */
+@media (max-width: 768px) {
+    .floating-social-column {
+        display: none; /* Safely hidden to keep small screens clean */
+    }
 }
 
 /* Mobile adjustments */

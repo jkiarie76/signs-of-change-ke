@@ -152,7 +152,46 @@ a {
 .desktop-nav a:hover, .desktop-nav a.active {
     color: #00a3a6;;
 }
+/* Desktop Dropdown Styles */
+.desktop-nav ul li {
+    position: relative; /* Crucial for positioning the absolute dropdown menu */
+}
 
+.desktop-nav .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff; /* Change to your design theme */
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+    z-index: 100;
+    padding: 10px 0;
+    list-style: none;
+}
+
+.desktop-nav .dropdown-menu li {
+    width: 100%;
+}
+
+.desktop-nav .dropdown-menu li a {
+    padding: 8px 16px;
+    display: block;
+    color: #333;
+    text-decoration: none;
+}
+
+/* Show desktop menu on hover */
+.desktop-nav .dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Mobile Dropdown Styles */
+.mobile-nav .mobile-dropdown-menu {
+    list-style: none;
+    padding-left: 20px; /* Indent sublinks slightly */
+    background-color: rgba(0, 0, 0, 0.05); /* Light distinction background */
+}
 
 .mobile-menu-btn {
     display: none;
@@ -188,9 +227,10 @@ a {
 .section-hero { padding: 4rem 0; background-color: #f6f2eb; }
 .hero-split-layout { display: flex; align-items: center; gap: 4rem; }
 .hero-text-side { flex: 1.2; }
+.hero-text-side .eyebrow-accent {background-color: #e0eeeb; text-align: center; max-width: 40%; padding: 0.5rem; border-radius: 99px;}
 .hero-image-side { flex: 1; }
 .eyebrow-accent { font-size: 0.8rem; font-weight: 700; color: turquoise; letter-spacing: 0.08em; display: block; margin-bottom: 1rem; }
-.hero-display-title { font-size: 3.2rem; font-weight: 800; color: #0c1a30; line-height: 1.15; margin-bottom: 1.5rem; }
+.hero-display-title { font-size: 2.5rem; font-weight: 800; color: #0c1a30; line-height: 1.15; margin-bottom: 1.5rem; }
 .hero-paragraph { font-size: 1.15rem; color: #4b5563; line-height: 1.6; margin-bottom: 2rem; }
 .hero-anchors-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
 .chip-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.2rem; background: #ffffff; border: 1px solid #e5e7eb; border-radius: 50px; color: #1f2937; font-size: 0.9rem; font-weight: 500; text-decoration: none; transition: all 0.2s ease; }
@@ -212,6 +252,39 @@ a {
 .panel-list li i { font-size: 1.15rem; margin-top: 2px; flex-shrink: 0; }
 .do-box i { color: #008080; }
 .dont-box i { color: #0c1a30; }
+/* Container to handle the positioning */
+.btn-center-bottom {
+    display: flex;
+    justify-content: center; /* Centers the button horizontally */
+    align-items: center;
+    margin-top: 40px;        /* Pushes it down to the bottom of the content */
+    
+}
+
+/* Button Styling (Adjust colors to match your theme) */
+.btn-etiquette {
+    display: inline-block;
+    padding: 12px 28px;
+    background-color: #005f73; /* Your primary brand color */
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* Hover Effect */
+.btn-etiquette:hover {
+    background-color: #0a9396; /* A slightly lighter/darker shade for hover */
+    transform: translateY(-2px); /* Subtle lift effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-etiquette:active {
+    transform: translateY(0);
+}
 
 /* --- 4. Section History Styles --- */
 .section-history { padding: 4rem 0; background-color: #f6f2eb;}
@@ -223,6 +296,71 @@ a {
 .node-year { font-size: 0.75rem; font-weight: 700; color: #008080; letter-spacing: 0.05em; display: block; margin-bottom: 0.25rem; }
 .node-content h6 { font-size: 1.1rem; font-weight: 700; color: #111827; margin-bottom: 0.35rem; }
 .node-content p { font-size: 0.95rem; color: #4b5563; line-height: 1.5; }
+/* Container to hide extra nodes initially */
+.timeline-extended {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease-out, opacity 0.4s ease-out;
+}
+
+/* Class triggered by JS to reveal nodes smoothly */
+.timeline-extended.is-expanded {
+    max-height: 2000px; /* High enough value to accommodate content */
+    opacity: 1;
+}
+
+/* Action alignment container at the bottom */
+.history-actions-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Horizontally centers content */
+    justify-content: center;
+    gap: 24px;          /* Space between the toggle button and exploration button */
+    margin-top: 40px;
+    width: 100%;
+}
+
+/* See Full History (Toggle style link/button) */
+.btn-see-more {
+    background: none;
+    border: none;
+    color: #005f73; /* Match your link accent color */
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 8px 16px;
+    transition: color 0.2s ease;
+}
+
+.btn-see-more:hover {
+    color: #0a9396;
+    text-decoration: underline;
+}
+
+/* Explore Main Page (Solid prominent button style) */
+.btn-explore-page {
+    display: inline-block;
+    padding: 12px 32px;
+    background-color: #005f73; /* Brand color */
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.btn-explore-page:hover {
+    background-color: #0a9396;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+}
+
+.btn-explore-page:active {
+    transform: translateY(0);
+}
 
 /* --- 5. Section Myths Styles --- */
 .section-myths { padding: 4rem 0; background-color: white; }
@@ -232,6 +370,9 @@ a {
 .fact-body { padding: 1.5rem; font-size: 0.95rem; color: #4b5563; line-height: 1.5; display: flex; flex-direction: column; gap: 0.5rem; }
 .card-meta-tag { font-size: 0.7rem; font-weight: 700; color: #6b7280; letter-spacing: 0.05em; }
 .accent-tag { color: #008080; }
+.btn-bottom{ display: flex; justify-content: center; margin-top: 40px;}
+.btn-bottom .btn-myths-facts{background-color: #008080; padding: 1rem; color: white; border-radius: 18px; transition: 2s ease;}
+.btn-bottom .btn-myths-facts:hover{background-color: rgb(40, 77, 77);}
 
 /* --- 6. Section Keep Going Styles --- */
 .section-keep-going { padding: 3rem 0; background-color: #f6f2eb; }
@@ -250,7 +391,60 @@ a {
 .footer-socials a:hover { border-color: turquoise; color: turquoise; transform: translateY(-2px); }
 .footer-links a { color: inherit; text-decoration: none; }
 .footer-links a:hover { color: #008080; }
+/* FLOATING SOCIAL LINKS */
+/* ==========================================================================
+   VERTICAL FLOATING SOCIAL COLUMN (RIGHT-ALIGNED)
+   ========================================================================== */
+.floating-social-column {
+    position: fixed;
+    top: 50%;
+    right: 25px; /* Glued to the right side, detached by 25px */
+    transform: translateY(-50%); /* Keeps it perfectly centered vertically */
+    
+    display: flex;
+    flex-direction: column; /* STRICTLY VERTICAL STACK */
+    gap: 12px; /* Gap between buttons */
+    z-index: 9999; /* Floats above background layers */
+}
 
+/* Circular Floating Button */
+.social-pill {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.15rem;
+    background-color: #1b1e34; /* Dark neutral base */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    
+    /* Smooth transitions for physics-based hovering feel */
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                box-shadow 0.2s ease, 
+                background-color 0.2s ease;
+}
+
+/* Hover Physics: Lift up and expand slightly */
+.social-pill:hover {
+    transform: scale(1.12); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Vibrant Brand Focus Colors on Hover */
+.social-pill.facebook:hover  { background-color: #1877f2; }
+.social-pill.twitter:hover   { background-color: #000000; }
+.social-pill.instagram:hover { background-color: #e1306c; }
+.social-pill.youtube:hover   { background-color: #ff0000; }
+
+/* Responsive Guardrail */
+@media (max-width: 768px) {
+    .floating-social-column {
+        display: none; /* Safely hidden to keep small screens clean */
+    }
+}
 /* --- Responsive Media Queries --- */
 @media (max-width: 968px) {
     .hero-split-layout { flex-direction: column-reverse; text-align: center; gap: 2rem; }

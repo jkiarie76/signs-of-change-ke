@@ -205,17 +205,21 @@ a {
 
 .eyebrow {
     text-transform: uppercase;
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: 0.9rem;
+    font-weight: 700;
     color:turquoise;
     letter-spacing: 0.05em;
     letter-spacing: 2px;
+    background: #e6f7f3;
+    padding: 0.25rem 0.75rem;
+    border-radius: 99px;
 }
 
 .section-header h3 {
-    font-size: 1.5rem;
     margin-top: 0.5rem;
-    font-weight: bold;
+    font-size: 2.3rem; 
+    font-weight: 800; 
+    color: #0c1a30;
 }
 
 /* --- Featured Article --- */
@@ -355,7 +359,7 @@ a {
 
 .widget h3 {
     margin: 0.5rem 0 1.5rem 0;
-    font-size:x-large;
+    font-size:1.125rem;
     font-weight: bold;
 }
 
@@ -496,12 +500,17 @@ a {
 
 .newsletter-form input {
     padding: 1rem;
-    border: 1px solid var(--border);
+    border: 2px solid white;
     border-radius: 99px;
     font-family: inherit;
     background-color: #1b1e34;
     color: #ffffff;
     font-size: 15px;
+}
+.newsletter-form input:focus{
+    border-color: turquoise; /* Changes the actual border color (e.g., to blue) */
+    outline: none;
+
 }
 .newsletter-form .btn{
     background-color:rgb(10, 191, 191);
@@ -557,17 +566,73 @@ a {
     color: turquoise;           /* Swaps nicely to your Turquoise Teal theme accent color */
     transform: translateY(-3px); /* Subtle lift animation on hover */
 }
+/* FLOATING SOCIAL LINKS */
+/* ==========================================================================
+   VERTICAL FLOATING SOCIAL COLUMN (RIGHT-ALIGNED)
+   ========================================================================== */
+.floating-social-column {
+    position: fixed;
+    top: 50%;
+    right: 25px; /* Glued to the right side, detached by 25px */
+    transform: translateY(-50%); /* Keeps it perfectly centered vertically */
+    
+    display: flex;
+    flex-direction: column; /* STRICTLY VERTICAL STACK */
+    gap: 12px; /* Gap between buttons */
+    z-index: 9999; /* Floats above background layers */
+}
 
+/* Circular Floating Button */
+.social-pill {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.15rem;
+    background-color: #1b1e34; /* Dark neutral base */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    
+    /* Smooth transitions for physics-based hovering feel */
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                box-shadow 0.2s ease, 
+                background-color 0.2s ease;
+}
+
+/* Hover Physics: Lift up and expand slightly */
+.social-pill:hover {
+    transform: scale(1.12); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Vibrant Brand Focus Colors on Hover */
+.social-pill.facebook:hover  { background-color: #1877f2; }
+.social-pill.twitter:hover   { background-color: #000000; }
+.social-pill.instagram:hover { background-color: #e1306c; }
+.social-pill.youtube:hover   { background-color: #ff0000; }
+
+/* Responsive Guardrail */
+@media (max-width: 768px) {
+    .floating-social-column {
+        display: none; /* Safely hidden to keep small screens clean */
+    }
+}
 /* Mobile adjustments */
 @media (max-width: 640px) {
     .footer-inner {
         flex-direction: column; /* Stacks components cleanly on tiny mobile layout screens */
         text-align: center;
     }
+    .footer{
+        max-width: 640px;
+    }
 }
 
 /* --- Responsive Design --- */
-@media (max-width: 900px) {
+@media (max-width: 800px) {  /* previously 900px */
     .main-layout {
         grid-template-columns: 1fr;
     }
