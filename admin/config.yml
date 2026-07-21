@@ -1,15 +1,61 @@
 backend:
   name: git-gateway
-  branch: main # Change to 'master' if that is your main branch name on GitHub
+  branch: main # Change to 'master' if your default branch is master
 
 media_folder: "assets/images/uploads"
 public_folder: "/assets/images/uploads"
 
 collections:
+  # ===================================================
+  # 1. BLOG ARTICLES (Featured Hero + Older Posts Grid)
+  # ===================================================
   - name: "blog"
     label: "Blog Articles"
     folder: "content/posts"
     create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Body Content", name: "body", widget: "markdown" }
+      - { label: "Article Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Author", name: "author", widget: "string", default: "Admin" }
+      - { label: "Read Time", name: "read_time", widget: "string", default: "7 min read" }
+      - { label: "Category", name: "category", widget: "select", options: ["Deaf Culture 101", "Deaf World", "Learn Sign", "Culture", "Voices", "Events"] }
+      - { label: "Feature as 'This Week's Read'?", name: "featured", widget: "boolean", default: true, hint: "Turn ON to make this the main featured article on the homepage." }
+      - { label: "Cover Image", name: "image", widget: "image" }
+      - { label: "Excerpt / Summary", name: "description", widget: "text" }
+      - { label: "Full Article Body", name: "body", widget: "markdown" }
+
+  # ===================================================
+  # 2. HOMEPAGE SIDEBAR WIDGETS
+  # ===================================================
+  - name: "sidebar"
+    label: "Homepage Sidebar Widgets"
+    files:
+      - file: "content/settings/sidebar.json"
+        label: "Sidebar Cards Content"
+        name: "sidebar_content"
+        fields:
+          # Daily Spark: Myth vs Fact
+          - name: "myth_fact"
+            label: "1. Myth vs. Fact Card"
+            widget: "object"
+            fields:
+              - { label: "Myth Text", name: "myth", widget: "text" }
+              - { label: "Fact Text", name: "fact", widget: "text" }
+
+          # Perspective: Quote of the Week
+          - name: "quote_of_the_week"
+            label: "2. Quote of the Week Card"
+            widget: "object"
+            fields:
+              - { label: "Quote Body", name: "quote", widget: "text" }
+              - { label: "Attribution / Source", name: "author", widget: "string", default: "COMMUNITY VOICE" }
+
+          # Weekly Vocabulary: Sign of the Week
+          - name: "sign_of_the_week"
+            label: "3. Sign of the Week Card"
+            widget: "object"
+            fields:
+              - { label: "Sign Title", name: "title", widget: "string" }
+              - { label: "Description / Instructions", name: "description", widget: "text" }
+              - { label: "Sign Image / Demonstration GIF", name: "media", widget: "image", required: false }
