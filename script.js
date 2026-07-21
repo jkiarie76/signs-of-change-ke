@@ -303,15 +303,49 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Connect Contact Form submission validation
-    const connectForm = document.getElementById('connect-contact-form');
-    if (connectForm) {
-        connectForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('form-name').value;
-            if (name) {
-                alert(`Thank you, ${name}! Your message has been sent successfully.`);
-                connectForm.reset();
+    const form = document.getElementById('form');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const result = document.getElementById('form-result');
+
+    form.addEventListener('submit', async (e) => {
+        // Stops browser redirect
+        e.preventDefault();
+
+        // Automatically includes all inputs, including your hidden access_key
+        const formData = new FormData(form);
+        const originalText = submitBtn.textContent;
+
+        submitBtn.textContent = "Sending...";
+        submitBtn.disabled = true;
+
+        // Reset feedback message state while submitting
+        result.textContent = "";
+        result.className = "form-result-message";
+
+        try {
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                // Display success message directly on the page
+                result.textContent = "Success! Your message has been sent.";
+                result.classList.add("success");
+                form.reset(); // Clears text fields instantly
+            } else {
+                result.textContent = "Error: " + data.message;
+                result.classList.add("error");
             }
-        });
-    }
+
+        } catch (error) {
+            result.textContent = "Something went wrong. Please try again.";
+            result.classList.add("error");
+        } finally {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }
+    });
 });

@@ -152,29 +152,21 @@
             </div>
             
             <div class="contact-form-wrapper">
-                <form class="actual-input-form">
-                    <div class="form-row-split">
-                        <div class="input-block">
-                            <label for="input-name">Name</label>
-                            <input type="text" id="input-name">
-                        </div>
-                        <div class="input-block">
-                            <label for="input-email">Email</label>
-                            <input type="email" id="input-email">
-                        </div>
+                <!-- Added id="form" here -->
+                <form id="form" class="contact">
+                    <input type="hidden" name="access_key" value="55eef4d1-147e-44eb-88a8-d48190024fc9">
+                    <input type="text" name="name" placeholder="Name" class="contact-input" required>
+                    <input type="email" name="email" placeholder="Email" class="contact-input" required>
+                    <input type="text" name="subject" placeholder="Subject" class="contact-input" required>
+                    <textarea name="message" placeholder="Message" class="contact-textarea" required></textarea>
+                    
+                    <div class="form-submit-footer">
+                        <span class="reply-guarantee-text">We reply within 3 business days.</span>
+                        <button type="submit" class="form-submit-button">SUBMIT FORM</button>
                     </div>
-                    <div class="input-block">
-                        <label for="input-subject">Subject</label>
-                        <input type="text" id="input-subject">
-                    </div>
-                    <div class="input-block">
-                        <label for="input-message">Message</label>
-                        <textarea id="input-message" rows="6"></textarea>
-                        <span class="input-hint-text">Up to 1,000 characters. Plain language is welcome.</span>
-                <div class="form-submit-footer">
-                    <span class="reply-guarantee-text">We reply within 3 business days.</span>
-                    <button type="submit" class="form-submit-button">SEND MESSAGE</button>
-                </div>
+
+                    <!-- In-page status message placeholder -->
+                    <p id="form-result" class="form-result-message"></p>
                 </form>
             </div>
         </div>

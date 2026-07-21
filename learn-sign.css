@@ -166,19 +166,20 @@ body {
     color: #00a3a6;;
 }
 /* ==========================================================================
-   DESKTOP NAVIGATION DROPDOWN FIXES
+   DESKTOP NAVIGATION DROPDOWN (HOVER ENABLED)
    ========================================================================== */
 
-/* CRITICAL FIX: This anchors the absolute dropdown directly to this list item container */
+/* Anchors the absolute dropdown directly to this list item container */
 .desktop-nav .dropdown {
     position: relative;
+    padding-bottom: 0.5rem; /* Helps bridge any gap between the link and the dropdown menu */
 }
 
 .desktop-nav .dropdown-menu {
     display: none; /* Hidden by default */
     position: absolute;
     top: 100%; /* Sits cleanly right under the navigation text block */
-    left: 0; /* Aligns perfectly flush with the left edge of the parent link */
+    left: 0;
     background-color: #ffffff; 
     min-width: 160px;
     box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
@@ -196,13 +197,20 @@ body {
     display: block;
     color: #333;
     text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.desktop-nav .dropdown-menu li a:hover {
+    background-color: rgba(0, 163, 166, 0.08);
+    color: turquoise;
 }
 
 /* 
-   REMOVED: .desktop-nav .dropdown:hover .dropdown-menu { display: block; }
-   REPLACED WITH: The click-activated state below handled via JS
+   HOVER TRIGGER: Automatically displays the dropdown when hovering 
+   over the parent .dropdown list item
 */
-.desktop-nav .dropdown-menu.open {
+.desktop-nav .dropdown:hover .dropdown-menu {
     display: block;
 }
 
