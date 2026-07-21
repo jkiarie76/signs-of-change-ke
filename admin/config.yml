@@ -1,0 +1,15 @@
+backend:
+  name: git-gateway
+  branch: main # Change to 'master' if that is your main branch name on GitHub
+
+media_folder: "assets/images/uploads"
+public_folder: "/assets/images/uploads"
+
+collections:
+  - name: "blog"
+    label: "Blog Articles"
+    folder: "content/posts"
+    create: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Body Content", name: "body", widget: "markdown" }
