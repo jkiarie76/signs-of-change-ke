@@ -348,7 +348,27 @@ a {
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+.section .butt1{
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+.archive-btn {
+    background: transparent;
+    color: #222;
+    border: 2px solid turquoise;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s;
+}
 
+.archive-btn:hover {
+    background: #ebf5f3;
+    color: #000;
+}
 /* --- Sidebar --- */
 .widget {
     background: #ffffff;
