@@ -23,6 +23,35 @@
         });
     }
     </script>
+    <!-- Include CDN parsers in your index.html <head> -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-yaml/dist/js-yaml.min.js"></script>
+
+<script>
+async function loadLatestPost() {
+  try {
+    // 1. Fetch the markdown file created by Decap CMS
+    const response = await fetch('/content/posts/2026-07-21-deaf-culture-told-well.md');
+    const text = await response.text();
+
+    // 2. Separate Frontmatter (YAML) from the Markdown Body
+    const parts = text.split('---');
+    const frontmatter = jsyaml.load(parts[1]);
+    const markdownBody = parts.slice(2).join('---');
+
+    // 3. Inject data into your DOM elements
+    document.querySelector('.featured-title').innerText = frontmatter.title;
+    document.querySelector('.featured-author').innerText = `By ${frontmatter.author} • ${frontmatter.date}`;
+    document.querySelector('.featured-description').innerText = frontmatter.description;
+    document.querySelector('.featured-body').innerHTML = marked.parse(markdownBody);
+
+  } catch (error) {
+    console.error('Error loading CMS content:', error);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadLatestPost);
+</script>
 </head>
 <body>
     <!-- Header & Navigation -->

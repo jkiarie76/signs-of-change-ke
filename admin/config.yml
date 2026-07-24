@@ -1,22 +1,29 @@
 backend:
   name: git-gateway
-  branch: main # Change to 'master' if your default branch is master
+  branch: main
 
 media_folder: "assets/images/uploads"
 public_folder: "/assets/images/uploads"
 
 collections:
   # ===================================================
-  # 1. BLOG ARTICLES (Featured Hero + Older Posts Grid)
+  # 1. BLOG ARTICLES (Folder Collection)
   # ===================================================
   - name: "blog"
     label: "Blog Articles"
     folder: "content/posts"
+    extension: "md"                      # Explicitly save as .md files
+    format: "yaml-frontmatter"           # Ensures clean YAML headers
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: "Article Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - label: "Publish Date"
+        name: "date"
+        widget: "datetime"
+        date_format: "YYYY-MM-DD"
+        time_format: "HH:mm"
+        picker_utc: false                # Saves in local time (EAT / East Africa Time)
       - { label: "Author", name: "author", widget: "string", default: "Admin" }
       - { label: "Read Time", name: "read_time", widget: "string", default: "7 min read" }
       - { label: "Category", name: "category", widget: "select", options: ["Deaf Culture 101", "Deaf World", "Learn Sign", "Culture", "Voices", "Events"] }
@@ -35,7 +42,6 @@ collections:
         label: "Sidebar Cards Content"
         name: "sidebar_content"
         fields:
-          # Daily Spark: Myth vs Fact
           - name: "myth_fact"
             label: "1. Myth vs. Fact Card"
             widget: "object"
@@ -43,7 +49,6 @@ collections:
               - { label: "Myth Text", name: "myth", widget: "text" }
               - { label: "Fact Text", name: "fact", widget: "text" }
 
-          # Perspective: Quote of the Week
           - name: "quote_of_the_week"
             label: "2. Quote of the Week Card"
             widget: "object"
@@ -51,7 +56,6 @@ collections:
               - { label: "Quote Body", name: "quote", widget: "text" }
               - { label: "Attribution / Source", name: "author", widget: "string", default: "COMMUNITY VOICE" }
 
-          # Weekly Vocabulary: Sign of the Week
           - name: "sign_of_the_week"
             label: "3. Sign of the Week Card"
             widget: "object"
