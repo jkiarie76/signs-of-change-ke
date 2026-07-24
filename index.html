@@ -6,52 +6,86 @@
     <title>Signs Of Change Ke - Deaf culture, told well</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="main.css">
-    <!-- Using a modern system font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <!-- Netlify Identity Widget -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
-    <!-- Script to handle invite tokens & redirect to admin -->
     <script>
     if (window.netlifyIdentity) {
         window.netlifyIdentity.on("init", user => {
-        if (!user) {
-            window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-            });
-        }
+            if (!user) {
+                window.netlifyIdentity.on("login", () => {
+                    document.location.href = "/admin/";
+                });
+            }
         });
     }
     </script>
-    <!-- Include CDN parsers in your index.html <head> -->
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/js-yaml/dist/js-yaml.min.js"></script>
 
-<script>
-async function loadLatestPost() {
-  try {
-    // 1. Fetch the markdown file created by Decap CMS
-    const response = await fetch('/content/posts/2026-07-21-deaf-culture-told-well.md');
-    const text = await response.text();
+    <!-- CDN Parsers -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml/dist/js-yaml.min.js"></script>
 
-    // 2. Separate Frontmatter (YAML) from the Markdown Body
-    const parts = text.split('---');
-    const frontmatter = jsyaml.load(parts[1]);
-    const markdownBody = parts.slice(2).join('---');
+    <!-- CMS Content Fetcher Script -->
+    <script>
+    async function loadCMSData() {
+      // --- 1. FETCH & DISPLAY FEATURED BLOG POST ---
+      try {
+        // Fetch the markdown post saved by Decap CMS
+        const response = await fetch('/content/posts/2026-07-21-deaf-culture-told-well.md');
+        if (response.ok) {
+          const text = await response.text();
+          const parts = text.split('---');
+          const frontmatter = jsyaml.load(parts[1]);
 
-    // 3. Inject data into your DOM elements
-    document.querySelector('.featured-title').innerText = frontmatter.title;
-    document.querySelector('.featured-author').innerText = `By ${frontmatter.author} • ${frontmatter.date}`;
-    document.querySelector('.featured-description').innerText = frontmatter.description;
-    document.querySelector('.featured-body').innerHTML = marked.parse(markdownBody);
+          // Map CMS fields directly to HTML elements
+          if (frontmatter.title) document.getElementById('featured-title').innerText = frontmatter.title;
+          if (frontmatter.category) document.getElementById('featured-category').innerText = frontmatter.category;
+          if (frontmatter.author) document.getElementById('featured-author').innerText = frontmatter.author;
+          if (frontmatter.date) document.getElementById('featured-date').innerText = frontmatter.date;
+          if (frontmatter.read_time) document.getElementById('featured-readtime').innerText = frontmatter.read_time;
+          if (frontmatter.description) document.getElementById('featured-description').innerText = frontmatter.description;
+          if (frontmatter.image) document.getElementById('featured-img').src = frontmatter.image;
+        }
+      } catch (error) {
+        console.error('Error loading featured post:', error);
+      }
 
-  } catch (error) {
-    console.error('Error loading CMS content:', error);
-  }
-}
+      // --- 2. FETCH & DISPLAY SIDEBAR WIDGETS ---
+      try {
+        const sidebarRes = await fetch('/content/settings/sidebar.json');
+        if (sidebarRes.ok) {
+          const sidebarData = await sidebarRes.json();
+          
+          // Myth vs Fact
+          if (sidebarData.myth_fact) {
+            document.getElementById('sidebar-myth').innerText = sidebarData.myth_fact.myth || '';
+            document.getElementById('sidebar-fact').innerText = sidebarData.myth_fact.fact || '';
+          }
 
-document.addEventListener('DOMContentLoaded', loadLatestPost);
-</script>
+          // Quote of the Week
+          if (sidebarData.quote_of_the_week) {
+            document.getElementById('sidebar-quote').innerText = `"${sidebarData.quote_of_the_week.quote}"`;
+            document.getElementById('sidebar-quote-author').innerText = `— ${sidebarData.quote_of_the_week.author}`;
+          }
+
+          // Sign of the Week
+          if (sidebarData.sign_of_the_week) {
+            document.getElementById('sidebar-sign-title').innerText = sidebarData.sign_of_the_week.title || 'Sign of the Week';
+            document.getElementById('sidebar-sign-desc').innerText = sidebarData.sign_of_the_week.description || '';
+            if (sidebarData.sign_of_the_week.media) {
+              document.getElementById('sidebar-sign-media').innerHTML = `<img src="${sidebarData.sign_of_the_week.media}" alt="Sign of the week" style="max-width:100%; height:auto;">`;
+            }
+          }
+        }
+      } catch (error) {
+        console.error('Error loading sidebar JSON:', error);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadCMSData);
+    </script>
 </head>
 <body>
     <!-- Header & Navigation -->
@@ -78,7 +112,6 @@ document.addEventListener('DOMContentLoaded', loadLatestPost);
             <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
         </div>
         
-        <!-- Mobile Navigation Dropdown -->
         <nav class="mobile-nav" id="mobile-nav">
             <ul>
                 <li><a href="index.html" class="active">Home</a></li>
@@ -102,24 +135,21 @@ document.addEventListener('DOMContentLoaded', loadLatestPost);
                     <h3>This week's read</h3>
                 </div>
 
-                <div class="section-headers"></div>
-
                 <article class="featured-card">
-                    <!-- Unsplash placeholder for the featured image -->
-                    <img src="/.netlify/images?url=/images/deaf_index.jpg&w=600&fm=webp" class="featured-img">
+                    <img id="featured-img" src="/images/deaf_index.jpg" class="featured-img">
                     <div class="featured-content">
                         <div class="tags">
-                            <span class="tag">Deaf Culture 101</span>
+                            <span id="featured-category" class="tag">Deaf Culture 101</span>
                             <span class="tag highlight">Featured</span>
                         </div>
-                        <h2>Deaf isn't a synonym for silent — it's a language, a lens, and a loud, loving culture</h2>
+                        <h2 id="featured-title">Loading title...</h2>
                         <div class="meta">
-                            By Admin &middot; <time>July 5, 2026</time> &middot; 7 min read
+                            By <span id="featured-author">Admin</span> &middot; <time id="featured-date">July 5, 2026</time> &middot; <span id="featured-readtime">7 min read</span>
                         </div>
-                        <p class="excerpt">
-                            For decades, hearing culture has framed deafness as an absence. Deaf writers, teachers and performers keep proving otherwise: sign languages are full grammars, Deaf communities are held together by shared humor and history, and access is a design choice — not a favor. Here's where to start if you want to see the world the way Deaf readers already do.
+                        <p id="featured-description" class="excerpt">
+                            Loading article summary...
                         </p>
-                        <a href="#" class="btn">Read Article -></a>
+                        <a href="article.html" class="btn">Read Article -></a>
                     </div>
                 </article>
             </section>
@@ -151,7 +181,7 @@ document.addEventListener('DOMContentLoaded', loadLatestPost);
                     </a>
 
                     <a href="#" class="archive-card">
-                        <img src="/.netlify/images?url=/images/olderpost_1.jpg&w=600&fm=webp" alt="Learning sign">
+                        <img src="/images/olderpost_1.jpg" alt="Learning sign">
                         <div class="card-text">
                             <span class="card-meta" style="color: turquoise;">Learn Sign &middot;</span> <span style="font-size: 13px;">Jun 14, 2026</span>
                             <h4>Fingerspelling faster: five drills that actually work</h4>
@@ -160,14 +190,13 @@ document.addEventListener('DOMContentLoaded', loadLatestPost);
                     </a>
 
                     <a href="#" class="archive-card">
-                        <img src="/.netlify/images?url=/images/oldpost_2.jpg&w=600&fm=webp" alt="Writing desk">
+                        <img src="/images/oldpost_2.jpg" alt="Writing desk">
                         <div class="card-text">
                             <span class="card-meta" style="color: turquoise;">Voices &middot;</span> <span style="font-size: 13px;"> Jun 07, 2026</span>
                             <h4>Writing letters, writing lives: a Deaf memoirist's craft</h4>
                             <p>How memoirist Naomi Reyes turns family archives into essays that both Deaf and hearing readers keep coming back to.</p>
                         </div>
                     </a>
-                    
                 </div>
                 <div class="butt1">
                     <a href="article.html"><button class="archive-btn">View All/ Archive</button></a>
@@ -184,12 +213,12 @@ document.addEventListener('DOMContentLoaded', loadLatestPost);
                 
                 <div class="fact-block-myth">
                     <span class="label">Myth</span>
-                    <p>"Sign language is universal — every Deaf person around the world uses the same one."</p>
+                    <p id="sidebar-myth">"Sign language is universal — every Deaf person around the world uses the same one."</p>
                 </div>
                 
                 <div class="fact-block-fact">
                     <span class="label">Fact</span>
-                    <p>There are over 300 distinct sign languages. ASL, BSL and Auslan all use English — but their grammars are entirely different.</p>
+                    <p id="sidebar-fact">There are over 300 distinct sign languages. ASL, BSL and Auslan all use English — but their grammars are entirely different.</p>
                 </div>
             </div>
 
@@ -199,26 +228,26 @@ document.addEventListener('DOMContentLoaded', loadLatestPost);
                 <h3>Quote of the Week</h3>
                 <div class="quote-container">
                     <i class="fa-solid fa-quote-left quote-icon"></i>
-                    <blockquote>
+                    <blockquote id="sidebar-quote">
                         "Deafness is not a disability, but a fascinating culture and a unique way of experiencing the world."
                     </blockquote>
-                    <cite>— Community Voice</cite>
+                    <cite id="sidebar-quote-author">— Community Voice</cite>
                 </div>
             </div>
 
             <!-- Sign of the Week Widget -->
             <div class="widget sidebar-sign-widget">
                 <span class="eyebrow">Weekly Vocabulary</span>
-                <h3>Sign of the Week</h3>
-                <p class="sign-description">Expand your vocabulary. Pay close attention to handshape, orientation, and movement.</p>
+                <h3 id="sidebar-sign-title">Sign of the Week</h3>
+                <p id="sidebar-sign-desc" class="sign-description">Expand your vocabulary. Pay close attention to handshape, orientation, and movement.</p>
                 
-                <!-- Video/GIF container placeholder -->
-                <div class="sidebar-media-box">
+                <div id="sidebar-sign-media" class="sidebar-media-box">
                     <span class="media-placeholder">[ Visual Sign Demonstration Loop ]</span>
                 </div>
                 
                 <a href="learn-sign.html" class="widget-link">Practice More Signs <i class="fa-solid fa-arrow-right"></i></a>
             </div>
+
             <!-- Newsletter Widget -->
             <div class="widget2">
                 <span class="eyebrow">Quick Newsletter</span>
@@ -251,7 +280,7 @@ document.addEventListener('DOMContentLoaded', loadLatestPost);
         </div>
     </footer>
 
-     <!-- Free-Floating Vertical Social Column -->
+    <!-- Floating Social Column -->
     <div class="floating-social-column">
         <a href="https://facebook.com" class="social-pill facebook" target="_blank" rel="noopener noreferrer" title="Facebook">
             <i class="fa-brands fa-facebook-f"></i>

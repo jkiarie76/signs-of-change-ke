@@ -7,27 +7,22 @@ public_folder: "/assets/images/uploads"
 
 collections:
   # ===================================================
-  # 1. BLOG ARTICLES (Folder Collection)
+  # 1. BLOG ARTICLES
   # ===================================================
   - name: "blog"
     label: "Blog Articles"
     folder: "content/posts"
-    extension: "md"                      # Explicitly save as .md files
-    format: "yaml-frontmatter"           # Ensures clean YAML headers
+    extension: "md"
+    format: "yaml-frontmatter"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: "Article Title", name: "title", widget: "string" }
-      - label: "Publish Date"
-        name: "date"
-        widget: "datetime"
-        date_format: "YYYY-MM-DD"
-        time_format: "HH:mm"
-        picker_utc: false                # Saves in local time (EAT / East Africa Time)
+      - { label: "Publish Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: "HH:mm", picker_utc: false }
       - { label: "Author", name: "author", widget: "string", default: "Admin" }
       - { label: "Read Time", name: "read_time", widget: "string", default: "7 min read" }
       - { label: "Category", name: "category", widget: "select", options: ["Deaf Culture 101", "Deaf World", "Learn Sign", "Culture", "Voices", "Events"] }
-      - { label: "Feature as 'This Week's Read'?", name: "featured", widget: "boolean", default: true, hint: "Turn ON to make this the main featured article on the homepage." }
+      - { label: "Feature as 'This Week's Read'?", name: "featured", widget: "boolean", default: true }
       - { label: "Cover Image", name: "image", widget: "image" }
       - { label: "Excerpt / Summary", name: "description", widget: "text" }
       - { label: "Full Article Body", name: "body", widget: "markdown" }
