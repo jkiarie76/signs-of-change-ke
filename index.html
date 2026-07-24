@@ -27,60 +27,94 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-yaml/dist/js-yaml.min.js"></script>
 
-    <!-- CMS Content Fetcher Script -->
+    <!-- Dynamic CMS Content Fetcher (GitHub API + jsDelivr CDN) -->
     <script>
-    async function loadCMSData() {
-      // --- 1. FETCH & DISPLAY FEATURED BLOG POST ---
-      try {
-        // Fetch the markdown post saved by Decap CMS
-        const response = await fetch('/content/posts/2026-07-24-testing-3-day-2-changed-yml-to-read-properly.md');
-        if (response.ok) {
-          const text = await response.text();
-          const parts = text.split('---');
-          const frontmatter = jsyaml.load(parts[1]);
+    // -------------------------------------------------------------
+    // CONFIGURATION: Replace these with your actual GitHub details!
+    // -------------------------------------------------------------
+    const GITHUB_USER = 'jkiarie76'; // e.g. 'JohnKiarie'
+    const GITHUB_REPO = 'DEAF';       // e.g. 'signs-of-change'
+    const BRANCH = 'main';                      // 'main' or 'master'
 
-          // Map CMS fields directly to HTML elements
-          if (frontmatter.title) document.getElementById('featured-title').innerText = frontmatter.title;
-          if (frontmatter.category) document.getElementById('featured-category').innerText = frontmatter.category;
-          if (frontmatter.author) document.getElementById('featured-author').innerText = frontmatter.author;
-          if (frontmatter.date) document.getElementById('featured-date').innerText = frontmatter.date;
-          if (frontmatter.read_time) document.getElementById('featured-readtime').innerText = frontmatter.read_time;
-          if (frontmatter.description) document.getElementById('featured-description').innerText = frontmatter.description;
-          if (frontmatter.image) document.getElementById('featured-img').src = frontmatter.image;
+    async function loadCMSData() {
+      // --- 1. DYNAMICALLY FETCH & DISPLAY LATEST FEATURED POST ---
+      try {
+        // Step A: Ask GitHub API for all markdown files in /content/posts/
+        const listApiUrl = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/content/posts`;
+        const listResponse = await fetch(listApiUrl);
+
+        if (listResponse.ok) {
+          const files = await listResponse.json();
+          
+          // Filter for .md files
+          const mdFiles = files.filter(f => f.name.endsWith('.md'));
+
+          if (mdFiles.length > 0) {
+            // Sort filenames descending to grab the newest post first
+            mdFiles.sort((a, b) => b.name.localeCompare(a.name));
+            const latestFile = mdFiles[0];
+
+            // Step B: Fetch the actual markdown file from jsDelivr CDN (Unlimited & Fast)
+            const cdnUrl = `https://cdn.jsdelivr.net/gh/${GITHUB_USER}/${GITHUB_REPO}@${BRANCH}/content/posts/${latestFile.name}`;
+            const contentResponse = await fetch(cdnUrl);
+
+            if (contentResponse.ok) {
+              const text = await contentResponse.text();
+              const parts = text.split('---');
+
+              if (parts.length >= 3) {
+                const frontmatter = jsyaml.load(parts[1]);
+
+                // Map Frontmatter data directly into the HTML UI
+                if (frontmatter.title) document.getElementById('featured-title').innerText = frontmatter.title;
+                if (frontmatter.category) document.getElementById('featured-category').innerText = frontmatter.category;
+                if (frontmatter.author) document.getElementById('featured-author').innerText = frontmatter.author;
+                if (frontmatter.date) document.getElementById('featured-date').innerText = frontmatter.date;
+                if (frontmatter.read_time) document.getElementById('featured-readtime').innerText = frontmatter.read_time;
+                if (frontmatter.description) document.getElementById('featured-description').innerText = frontmatter.description;
+                if (frontmatter.image) document.getElementById('featured-img').src = frontmatter.image;
+              }
+            }
+          }
+        } else {
+          console.warn('Could not list GitHub directory files. Check repository name/username.');
         }
       } catch (error) {
-        console.error('Error loading featured post:', error);
+        console.error('Error fetching featured post via API/CDN:', error);
       }
 
       // --- 2. FETCH & DISPLAY SIDEBAR WIDGETS ---
       try {
-        const sidebarRes = await fetch('/content/settings/sidebar.json');
+        // Fetch sidebar JSON via jsDelivr CDN
+        const sidebarCdnUrl = `https://cdn.jsdelivr.net/gh/${GITHUB_USER}/${GITHUB_REPO}@${BRANCH}/content/settings/sidebar.json`;
+        const sidebarRes = await fetch(sidebarCdnUrl);
+        
         if (sidebarRes.ok) {
           const sidebarData = await sidebarRes.json();
           
           // Myth vs Fact
           if (sidebarData.myth_fact) {
-            document.getElementById('sidebar-myth').innerText = sidebarData.myth_fact.myth || '';
-            document.getElementById('sidebar-fact').innerText = sidebarData.myth_fact.fact || '';
+            if (sidebarData.myth_fact.myth) document.getElementById('sidebar-myth').innerText = sidebarData.myth_fact.myth;
+            if (sidebarData.myth_fact.fact) document.getElementById('sidebar-fact').innerText = sidebarData.myth_fact.fact;
           }
 
           // Quote of the Week
           if (sidebarData.quote_of_the_week) {
-            document.getElementById('sidebar-quote').innerText = `"${sidebarData.quote_of_the_week.quote}"`;
-            document.getElementById('sidebar-quote-author').innerText = `— ${sidebarData.quote_of_the_week.author}`;
+            if (sidebarData.quote_of_the_week.quote) document.getElementById('sidebar-quote').innerText = `"${sidebarData.quote_of_the_week.quote}"`;
+            if (sidebarData.quote_of_the_week.author) document.getElementById('sidebar-quote-author').innerText = `— ${sidebarData.quote_of_the_week.author}`;
           }
 
           // Sign of the Week
           if (sidebarData.sign_of_the_week) {
-            document.getElementById('sidebar-sign-title').innerText = sidebarData.sign_of_the_week.title || 'Sign of the Week';
-            document.getElementById('sidebar-sign-desc').innerText = sidebarData.sign_of_the_week.description || '';
+            if (sidebarData.sign_of_the_week.title) document.getElementById('sidebar-sign-title').innerText = sidebarData.sign_of_the_week.title;
+            if (sidebarData.sign_of_the_week.description) document.getElementById('sidebar-sign-desc').innerText = sidebarData.sign_of_the_week.description;
             if (sidebarData.sign_of_the_week.media) {
               document.getElementById('sidebar-sign-media').innerHTML = `<img src="${sidebarData.sign_of_the_week.media}" alt="Sign of the week" style="max-width:100%; height:auto;">`;
             }
           }
         }
       } catch (error) {
-        console.error('Error loading sidebar JSON:', error);
+        console.error('Error loading sidebar JSON via CDN:', error);
       }
     }
 
@@ -144,7 +178,7 @@
                         </div>
                         <h2 id="featured-title">Loading title...</h2>
                         <div class="meta">
-                            By <span id="featured-author">Admin</span> &middot; <time id="featured-date">July 5, 2026</time> &middot; <span id="featured-readtime">7 min read</span>
+                            By <span id="featured-author">Admin</span> &middot; <time id="featured-date">Loading date...</time> &middot; <span id="featured-readtime">5 min read</span>
                         </div>
                         <p id="featured-description" class="excerpt">
                             Loading article summary...
